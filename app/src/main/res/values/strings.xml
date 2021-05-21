@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Verificator CNP</string>
+
+    <string name="str_letter_V">V</string>
+    <string name="str_letter_e">e</string>
+    <string name="str_letter_r_1">r</string>
+    <string name="str_letter_i_1">i</string>
+    <string name="str_letter_f">f</string>
+    <string name="str_letter_i_2">i</string>
+    <string name="str_letter_c">c</string>
+    <string name="str_letter_a">a</string>
+    <string name="str_letter_t">t</string>
+    <string name="str_letter_o">o</string>
+    <string name="str_letter_r_2">r</string>
+</resources>
