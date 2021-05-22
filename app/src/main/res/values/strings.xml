@@ -12,4 +12,12 @@
     <string name="str_letter_t">t</string>
     <string name="str_letter_o">o</string>
     <string name="str_letter_r_2">r</string>
+
+    <string name="str_letter_cnp_C">C</string>
+    <string name="str_letter_cnp_N">N</string>
+    <string name="str_letter_cnp_P">P</string>
+
+    <string name="str_by_Stufflex">by Stufflex</string>
+
+
 </resources>
