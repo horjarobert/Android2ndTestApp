@@ -19,5 +19,33 @@
 
     <string name="str_by_Stufflex">by Stufflex</string>
 
+    <string name="str_introduceti_cnp">Introduceți CNP-ul:</string>
+
+    <string name="str_hint_sexul">S</string>
+    <string name="str_hint_anul">AA</string>
+    <string name="str_hint_luna">LL</string>
+    <string name="str_hint_ziua">ZZ</string>
+    <string name="str_hint_judetul">JJ</string>
+    <string name="str_hint_numar_secvential">NNN</string>
+    <string name="str_hint_cifra_de_control">C</string>
+
+    <string name="str_question_mark">"\?"</string>
+    <string name="str_exclamation_mark">!</string>
+
+    <string name="str_verifica">Verifică</string>
+    <string name="str_verifica_semn">✔</string>
+
+    <string name="str_shower">🚿</string>
+
+    <string name="str_reimprospatare">Reîmprospătare</string>
+
+    <string name="str_tooltip_sexul">Sexul și secolul nașterii</string>
+    <string name="str_tooltip_anul">Ultimele două cifre ale anul nașterii</string>
+    <string name="str_tooltip_luna">Luna nașterii</string>
+    <string name="str_tooltip_ziua">Ziua nașterii</string>
+    <string name="str_tooltip_judet">Județul sau sectorul nașterii</string>
+    <string name="str_tooltip_numar_secvential">Numărul secvențial</string>
+    <string name="str_tooltip_cifra_de_control">Cifra de control</string>
+
 
 </resources>

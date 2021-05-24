@@ -58,30 +58,13 @@ public class SplashActivity extends AppCompatActivity {
     private TextView txt_t_1, txt_t_2, txt_t_3, txt_t_4, txt_t_5, txt_t_6, txt_t_7, txt_t_8, txt_t_9, txt_t_10;
 
     private ConstraintLayout splashLayout;
+    private ConstraintLayout clickToEndLayout;
 
-    private Handler handler_letter_V;
-    private Handler handler_letter_e;
-    private Handler handler_letter_r_1;
-    private Handler handler_letter_i_1;
-    private Handler handler_letter_f;
-    private Handler handler_letter_i_2;
-    private Handler handler_letter_c;
-    private Handler handler_letter_a;
-    private Handler handler_letter_t;
-    private Handler handler_letter_o;
-    private Handler handler_letter_r_2;
+    private Handler handler_letter_V, handler_letter_e, handler_letter_r_1, handler_letter_i_1, handler_letter_f, handler_letter_i_2,
+                    handler_letter_c, handler_letter_a, handler_letter_t, handler_letter_o, handler_letter_r_2, handler_special;
 
-    private Runnable runnable_letter_V;
-    private Runnable runnable_letter_e;
-    private Runnable runnable_letter_r_1;
-    private Runnable runnable_letter_i_1;
-    private Runnable runnable_letter_f;
-    private Runnable runnable_letter_i_2;
-    private Runnable runnable_letter_c;
-    private Runnable runnable_letter_a;
-    private Runnable runnable_letter_t;
-    private Runnable runnable_letter_o;
-    private Runnable runnable_letter_r_2;
+    private Runnable runnable_letter_V, runnable_letter_e, runnable_letter_r_1, runnable_letter_i_1, runnable_letter_f, runnable_letter_i_2,
+                     runnable_letter_c, runnable_letter_a, runnable_letter_t, runnable_letter_o, runnable_letter_r_2, runnable_special;
 
     private Animation anim_letter_V;
     private Animation anim_letter_e;
@@ -176,6 +159,7 @@ public class SplashActivity extends AppCompatActivity {
     private Animator scaleUp_txt_r_2, scaleUp_txt_r_3, scaleUp_txt_r_4, scaleUp_txt_r_5, scaleUp_txt_r_6, scaleUp_txt_r_7, scaleUp_txt_r_8, scaleUp_txt_r_9;
     private Animator scaleUp_txt_s_2, scaleUp_txt_s_3, scaleUp_txt_s_4, scaleUp_txt_s_5, scaleUp_txt_s_6, scaleUp_txt_s_7, scaleUp_txt_s_8, scaleUp_txt_s_9;
 
+    private boolean isStartingAnimation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -425,6 +409,7 @@ public class SplashActivity extends AppCompatActivity {
         txt_t_10 = findViewById(R.id.txt_t_10);
 
         splashLayout = findViewById(R.id.splashLayout);
+        clickToEndLayout = findViewById(R.id.clickToEndLayout);
 
         // Hide txt
         txt_letter_V.setVisibility(View.INVISIBLE);
@@ -501,659 +486,18 @@ public class SplashActivity extends AppCompatActivity {
         setDownAndUp_P.playSequentially(scaleDown_P, scaleUp_P);
         setDownAndUp_P.start();
 
+        StartAnimations();
 
-
-        /*
-         On show, handler & runnable party
-         */
-
-        // First round
-        handler_letter_V = new Handler();
-        runnable_letter_V = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_V.setVisibility(View.VISIBLE);
-                txt_letter_V.setAnimation(anim_letter_V);
-            }
-        };
-        handler_letter_V.postDelayed(runnable_letter_V, 100);
-
-        handler_letter_e = new Handler();
-        runnable_letter_e = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_e.setVisibility(View.VISIBLE);
-                txt_letter_e.setAnimation(anim_letter_e);
-            }
-        };
-        handler_letter_e.postDelayed(runnable_letter_e, 200);
-
-        handler_letter_r_1 = new Handler();
-        runnable_letter_r_1 = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_r_1.setVisibility(View.VISIBLE);
-                txt_letter_r_1.setAnimation(anim_letter_r_1);
-            }
-        };
-        handler_letter_r_1.postDelayed(runnable_letter_r_1, 300);
-
-        handler_letter_i_1 = new Handler();
-        runnable_letter_i_1 = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_i_1.setVisibility(View.VISIBLE);
-                txt_letter_i_1.setAnimation(anim_letter_i_1);
-            }
-        };
-        handler_letter_i_1.postDelayed(runnable_letter_i_1, 400);
-
-        handler_letter_f = new Handler();
-        runnable_letter_f = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_f.setVisibility(View.VISIBLE);
-                txt_letter_f.setAnimation(anim_letter_f);
-            }
-        };
-        handler_letter_f.postDelayed(runnable_letter_f, 500);
-
-        handler_letter_i_2 = new Handler();
-        runnable_letter_i_2 = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_i_2.setVisibility(View.VISIBLE);
-                txt_letter_i_2.setAnimation(anim_letter_i_2);
-            }
-        };
-        handler_letter_i_1.postDelayed(runnable_letter_i_2, 600);
-
-        handler_letter_c = new Handler();
-        runnable_letter_c = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_c.setVisibility(View.VISIBLE);
-                txt_letter_c.setAnimation(anim_letter_c);
-            }
-        };
-        handler_letter_c.postDelayed(runnable_letter_c, 700);
-
-        handler_letter_a = new Handler();
-        runnable_letter_a = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_a.setVisibility(View.VISIBLE);
-                txt_letter_a.setAnimation(anim_letter_a);
-            }
-        };
-        handler_letter_a.postDelayed(runnable_letter_a, 800);
-
-        handler_letter_t = new Handler();
-        runnable_letter_t = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_t.setVisibility(View.VISIBLE);
-                txt_letter_t.setAnimation(anim_letter_t);
-            }
-        };
-        handler_letter_t.postDelayed(runnable_letter_t, 900);
-
-        handler_letter_o = new Handler();
-        runnable_letter_o = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_o.setVisibility(View.VISIBLE);
-                txt_letter_o.setAnimation(anim_letter_o);
-            }
-        };
-        handler_letter_o.postDelayed(runnable_letter_o, 1000);
-
-        handler_letter_r_2 = new Handler();
-        runnable_letter_r_2 = new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_r_2.setVisibility(View.VISIBLE);
-                txt_letter_r_2.setAnimation(anim_letter_r_2);
-            }
-        };
-        handler_letter_r_2.postDelayed(runnable_letter_r_2, 1100);
-
-        // Second round, without handler & runnable names
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_V.setAnimation(anim_letter_V_up);
-
-            }
-        }, 1300);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_V.setVisibility(View.INVISIBLE);
-
-            }
-        }, 1300);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_e.setAnimation(anim_letter_e_down);
-
-            }
-        }, 1400);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_e.setVisibility(View.INVISIBLE);
-
-            }
-        }, 1400);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_r_1.setAnimation(anim_letter_r_1_up);
-
-            }
-        }, 1500);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_r_1.setVisibility(View.INVISIBLE);
-
-            }
-        }, 1500);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_i_1.setAnimation(anim_letter_i_1_down);
-
-            }
-        }, 1600);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_i_1.setVisibility(View.INVISIBLE);
-
-            }
-        }, 1600);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_f.setAnimation(anim_letter_f_up);
-
-            }
-        }, 1700);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_f.setVisibility(View.INVISIBLE);
-
-            }
-        }, 1700);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_i_2.setAnimation(anim_letter_i_2_down);
-
-            }
-        }, 1800);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_i_2.setVisibility(View.INVISIBLE);
-
-            }
-        }, 1800);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_c.setAnimation(anim_letter_c_up);
-
-            }
-        }, 1900);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_c.setVisibility(View.INVISIBLE);
-
-            }
-        }, 1900);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_a.setAnimation(anim_letter_a_down);
-
-            }
-        }, 2000);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_a.setVisibility(View.INVISIBLE);
-
-            }
-        }, 2000);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_t.setAnimation(anim_letter_t_up);
-
-            }
-        }, 2100);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_t.setVisibility(View.INVISIBLE);
-
-            }
-        }, 2100);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_o.setAnimation(anim_letter_o_down);
-
-            }
-        }, 2200);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_o.setVisibility(View.INVISIBLE);
-
-            }
-        }, 2200);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_r_2.setAnimation(anim_letter_r_2_up);
-
-            }
-        }, 2300);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_r_2.setVisibility(View.INVISIBLE);
-
-            }
-        }, 2300);
-
-        // Third round
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_cnp_C.setVisibility(View.VISIBLE);
-
-                setDownAndUp_C.start();
-            }
-        }, 2600);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_cnp_N.setVisibility(View.VISIBLE);
-
-                setDownAndUp_N.start();
-            }
-        }, 2900);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_letter_cnp_P.setVisibility(View.VISIBLE);
-
-                setDownAndUp_P.start();
-            }
-        }, 3200);
-
-        // Fourth round
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                RomanianFlagShowsUp();
-
-                SetDrawableUpAndDownTXTS_UP();
-
-            }
-        }, 3800);
-
-        // Fifth round
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_by_Stufflex.setVisibility(View.VISIBLE);
-
-                txt_letter_cnp_C.setVisibility(View.INVISIBLE);
-                txt_letter_cnp_N.setVisibility(View.INVISIBLE);
-                txt_letter_cnp_P.setVisibility(View.INVISIBLE);
-
-                txt_b_5.setVisibility(View.INVISIBLE);
-                txt_s_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4500);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_c_5.setVisibility(View.INVISIBLE);
-                txt_r_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4550);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_d_5.setVisibility(View.INVISIBLE);
-                txt_q_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4600);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_e_5.setVisibility(View.INVISIBLE);
-                txt_p_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4650);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_f_5.setVisibility(View.INVISIBLE);
-                txt_o_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4700);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_g_5.setVisibility(View.INVISIBLE);
-                txt_n_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4750);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_h_5.setVisibility(View.INVISIBLE);
-                txt_m_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4800);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_i_5.setVisibility(View.INVISIBLE);
-                txt_l_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4850);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_j_5.setVisibility(View.INVISIBLE);
-                txt_k_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4900);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_k_5.setVisibility(View.INVISIBLE);
-                txt_j_6.setVisibility(View.INVISIBLE);
-            }
-        }, 4950);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_l_5.setVisibility(View.INVISIBLE);
-                txt_i_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5000);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_m_5.setVisibility(View.INVISIBLE);
-                txt_h_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5050);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_n_5.setVisibility(View.INVISIBLE);
-                txt_g_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5100);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_o_5.setVisibility(View.INVISIBLE);
-                txt_f_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5150);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_p_5.setVisibility(View.INVISIBLE);
-                txt_e_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5200);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_q_5.setVisibility(View.INVISIBLE);
-                txt_d_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5250);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_r_5.setVisibility(View.INVISIBLE);
-                txt_c_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5300);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_s_5.setVisibility(View.INVISIBLE);
-                txt_b_6.setVisibility(View.INVISIBLE);
-            }
-        }, 5350);
-
-        // Sixth round
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_b_6.setVisibility(View.VISIBLE);
-                txt_b_6.setBackgroundResource(R.drawable.layout_blue);
-
-                txt_s_5.setVisibility(View.VISIBLE);
-                txt_s_6.setBackgroundResource(R.drawable.layout_red);
-            }
-        }, 5800);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_c_6.setVisibility(View.VISIBLE);
-                txt_c_6.setBackgroundResource(R.drawable.layout_blue);
-
-                txt_r_5.setVisibility(View.VISIBLE);
-                txt_r_5.setBackgroundResource(R.drawable.layout_red);
-            }
-        }, 5850);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_d_6.setVisibility(View.VISIBLE);
-                txt_d_6.setBackgroundResource(R.drawable.layout_blue);
-
-                txt_q_5.setVisibility(View.VISIBLE);
-                txt_q_5.setBackgroundResource(R.drawable.layout_red);
-            }
-        }, 5900);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_e_6.setVisibility(View.VISIBLE);
-                txt_e_6.setBackgroundResource(R.drawable.layout_blue);
-
-                txt_p_5.setVisibility(View.VISIBLE);
-                txt_p_5.setBackgroundResource(R.drawable.layout_red);
-            }
-        }, 5950);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_f_6.setVisibility(View.VISIBLE);
-                txt_f_6.setBackgroundResource(R.drawable.layout_blue);
-
-                txt_o_5.setVisibility(View.VISIBLE);
-                txt_o_5.setBackgroundResource(R.drawable.layout_red);
-            }
-        }, 6000);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_g_6.setVisibility(View.VISIBLE);
-                txt_g_6.setBackgroundResource(R.drawable.layout_blue);
-
-                txt_n_5.setVisibility(View.VISIBLE);
-                txt_n_5.setBackgroundResource(R.drawable.layout_red);
-            }
-        }, 6050);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_h_6.setVisibility(View.VISIBLE);
-                txt_h_6.setBackgroundResource(R.drawable.layout_yellow);
-
-                txt_m_5.setVisibility(View.VISIBLE);
-                txt_m_5.setBackgroundResource(R.drawable.layout_yellow);
-            }
-        }, 6100);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_i_6.setVisibility(View.VISIBLE);
-                txt_i_6.setBackgroundResource(R.drawable.layout_yellow);
-
-                txt_l_5.setVisibility(View.VISIBLE);
-                txt_l_5.setBackgroundResource(R.drawable.layout_yellow);
-            }
-        }, 6150);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_j_6.setVisibility(View.VISIBLE);
-                txt_j_6.setBackgroundResource(R.drawable.layout_yellow);
-
-                txt_k_5.setVisibility(View.VISIBLE);
-                txt_k_5.setBackgroundResource(R.drawable.layout_yellow);
-            }
-        }, 6200);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_k_6.setVisibility(View.VISIBLE);
-                txt_k_6.setBackgroundResource(R.drawable.layout_yellow);
-
-                txt_j_5.setVisibility(View.VISIBLE);
-                txt_j_5.setBackgroundResource(R.drawable.layout_yellow);
-            }
-        }, 6250);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_l_6.setVisibility(View.VISIBLE);
-                txt_l_6.setBackgroundResource(R.drawable.layout_yellow);
-
-                txt_i_5.setVisibility(View.VISIBLE);
-                txt_i_5.setBackgroundResource(R.drawable.layout_yellow);
-            }
-        }, 6300);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_m_6.setVisibility(View.VISIBLE);
-                txt_m_6.setBackgroundResource(R.drawable.layout_yellow);
-
-                txt_h_5.setVisibility(View.VISIBLE);
-                txt_h_5.setBackgroundResource(R.drawable.layout_yellow);
-            }
-        }, 6350);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_n_6.setVisibility(View.VISIBLE);
-                txt_n_6.setBackgroundResource(R.drawable.layout_red);
-
-                txt_g_5.setVisibility(View.VISIBLE);
-                txt_g_5.setBackgroundResource(R.drawable.layout_blue);
-            }
-        }, 6400);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_o_6.setVisibility(View.VISIBLE);
-                txt_o_6.setBackgroundResource(R.drawable.layout_red);
-
-                txt_f_5.setVisibility(View.VISIBLE);
-                txt_f_5.setBackgroundResource(R.drawable.layout_blue);
-            }
-        }, 6450);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_p_6.setVisibility(View.VISIBLE);
-                txt_p_6.setBackgroundResource(R.drawable.layout_red);
-
-                txt_e_5.setVisibility(View.VISIBLE);
-                txt_e_5.setBackgroundResource(R.drawable.layout_blue);
-            }
-        }, 6500);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_q_6.setVisibility(View.VISIBLE);
-                txt_q_6.setBackgroundResource(R.drawable.layout_red);
-
-                txt_d_5.setVisibility(View.VISIBLE);
-                txt_d_5.setBackgroundResource(R.drawable.layout_blue);
-            }
-        }, 6550);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_r_6.setVisibility(View.VISIBLE);
-                txt_r_6.setBackgroundResource(R.drawable.layout_red);
-
-                txt_c_5.setVisibility(View.VISIBLE);
-                txt_c_5.setBackgroundResource(R.drawable.layout_blue);
-            }
-        }, 6600);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_s_6.setVisibility(View.VISIBLE);
-                txt_s_6.setBackgroundResource(R.drawable.layout_red);
-
-                txt_b_5.setVisibility(View.VISIBLE);
-                txt_b_5.setBackgroundResource(R.drawable.layout_blue);
-            }
-        }, 6650);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                txt_by_Stufflex.setVisibility(View.INVISIBLE);
-                SetDrawableUpAndDownTXTS_DOWN();
-            }
-        }, 6651);
-
-        // Splash screen time-limit
-        new Handler().postDelayed(new Runnable(){
+        clickToEndLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                Intent toMainActivity = new Intent(SplashActivity.this, MainActivity.class);
-                SplashActivity.this.startActivity(toMainActivity);
-                SplashActivity.this.finish();
+            public void onClick(View view) {
+                isStartingAnimation = true;
+                if (isStartingAnimation) {
+                    handler_special.removeCallbacksAndMessages(null);
+                    GoToMainActivity();
+                }
             }
-        }, 8000);
+        });
 
     }
 
@@ -4803,5 +4147,669 @@ public class SplashActivity extends AppCompatActivity {
         setDownAndUp_txt_s_8.start();
         setDownAndUp_txt_s_9.start();
 
+    }
+
+    public void StartAnimations() {
+        /*
+         On show, handler & runnable party
+         */
+
+        // First round
+        handler_letter_V = new Handler();
+        runnable_letter_V = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_V.setVisibility(View.VISIBLE);
+                txt_letter_V.setAnimation(anim_letter_V);
+            }
+        };
+        handler_letter_V.postDelayed(runnable_letter_V, 100);
+
+        handler_letter_e = new Handler();
+        runnable_letter_e = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_e.setVisibility(View.VISIBLE);
+                txt_letter_e.setAnimation(anim_letter_e);
+            }
+        };
+        handler_letter_e.postDelayed(runnable_letter_e, 200);
+
+        handler_letter_r_1 = new Handler();
+        runnable_letter_r_1 = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_r_1.setVisibility(View.VISIBLE);
+                txt_letter_r_1.setAnimation(anim_letter_r_1);
+            }
+        };
+        handler_letter_r_1.postDelayed(runnable_letter_r_1, 300);
+
+        handler_letter_i_1 = new Handler();
+        runnable_letter_i_1 = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_i_1.setVisibility(View.VISIBLE);
+                txt_letter_i_1.setAnimation(anim_letter_i_1);
+            }
+        };
+        handler_letter_i_1.postDelayed(runnable_letter_i_1, 400);
+
+        handler_letter_f = new Handler();
+        runnable_letter_f = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_f.setVisibility(View.VISIBLE);
+                txt_letter_f.setAnimation(anim_letter_f);
+            }
+        };
+        handler_letter_f.postDelayed(runnable_letter_f, 500);
+
+        handler_letter_i_2 = new Handler();
+        runnable_letter_i_2 = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_i_2.setVisibility(View.VISIBLE);
+                txt_letter_i_2.setAnimation(anim_letter_i_2);
+            }
+        };
+        handler_letter_i_1.postDelayed(runnable_letter_i_2, 600);
+
+        handler_letter_c = new Handler();
+        runnable_letter_c = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_c.setVisibility(View.VISIBLE);
+                txt_letter_c.setAnimation(anim_letter_c);
+            }
+        };
+        handler_letter_c.postDelayed(runnable_letter_c, 700);
+
+        handler_letter_a = new Handler();
+        runnable_letter_a = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_a.setVisibility(View.VISIBLE);
+                txt_letter_a.setAnimation(anim_letter_a);
+            }
+        };
+        handler_letter_a.postDelayed(runnable_letter_a, 800);
+
+        handler_letter_t = new Handler();
+        runnable_letter_t = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_t.setVisibility(View.VISIBLE);
+                txt_letter_t.setAnimation(anim_letter_t);
+            }
+        };
+        handler_letter_t.postDelayed(runnable_letter_t, 900);
+
+        handler_letter_o = new Handler();
+        runnable_letter_o = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_o.setVisibility(View.VISIBLE);
+                txt_letter_o.setAnimation(anim_letter_o);
+            }
+        };
+        handler_letter_o.postDelayed(runnable_letter_o, 1000);
+
+        handler_letter_r_2 = new Handler();
+        runnable_letter_r_2 = new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_r_2.setVisibility(View.VISIBLE);
+                txt_letter_r_2.setAnimation(anim_letter_r_2);
+            }
+        };
+        handler_letter_r_2.postDelayed(runnable_letter_r_2, 1100);
+
+        // Second round, without handler & runnable names
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_V.setAnimation(anim_letter_V_up);
+
+            }
+        }, 1300);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_V.setVisibility(View.INVISIBLE);
+
+            }
+        }, 1300);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_e.setAnimation(anim_letter_e_down);
+
+            }
+        }, 1400);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_e.setVisibility(View.INVISIBLE);
+
+            }
+        }, 1400);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_r_1.setAnimation(anim_letter_r_1_up);
+
+            }
+        }, 1500);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_r_1.setVisibility(View.INVISIBLE);
+
+            }
+        }, 1500);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_i_1.setAnimation(anim_letter_i_1_down);
+
+            }
+        }, 1600);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_i_1.setVisibility(View.INVISIBLE);
+
+            }
+        }, 1600);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_f.setAnimation(anim_letter_f_up);
+
+            }
+        }, 1700);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_f.setVisibility(View.INVISIBLE);
+
+            }
+        }, 1700);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_i_2.setAnimation(anim_letter_i_2_down);
+
+            }
+        }, 1800);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_i_2.setVisibility(View.INVISIBLE);
+
+            }
+        }, 1800);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_c.setAnimation(anim_letter_c_up);
+
+            }
+        }, 1900);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_c.setVisibility(View.INVISIBLE);
+
+            }
+        }, 1900);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_a.setAnimation(anim_letter_a_down);
+
+            }
+        }, 2000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_a.setVisibility(View.INVISIBLE);
+
+            }
+        }, 2000);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_t.setAnimation(anim_letter_t_up);
+
+            }
+        }, 2100);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_t.setVisibility(View.INVISIBLE);
+
+            }
+        }, 2100);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_o.setAnimation(anim_letter_o_down);
+
+            }
+        }, 2200);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_o.setVisibility(View.INVISIBLE);
+
+            }
+        }, 2200);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_r_2.setAnimation(anim_letter_r_2_up);
+
+            }
+        }, 2300);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_r_2.setVisibility(View.INVISIBLE);
+
+            }
+        }, 2300);
+
+        // Third round
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_cnp_C.setVisibility(View.VISIBLE);
+
+                setDownAndUp_C.start();
+            }
+        }, 2600);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_cnp_N.setVisibility(View.VISIBLE);
+
+                setDownAndUp_N.start();
+            }
+        }, 2900);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_letter_cnp_P.setVisibility(View.VISIBLE);
+
+                setDownAndUp_P.start();
+            }
+        }, 3200);
+
+        // Fourth round
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                RomanianFlagShowsUp();
+
+                SetDrawableUpAndDownTXTS_UP();
+
+            }
+        }, 3800);
+
+        // Fifth round
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_by_Stufflex.setVisibility(View.VISIBLE);
+
+                txt_letter_cnp_C.setVisibility(View.INVISIBLE);
+                txt_letter_cnp_N.setVisibility(View.INVISIBLE);
+                txt_letter_cnp_P.setVisibility(View.INVISIBLE);
+
+                txt_b_5.setVisibility(View.INVISIBLE);
+                txt_s_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4500);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_c_5.setVisibility(View.INVISIBLE);
+                txt_r_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4550);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_d_5.setVisibility(View.INVISIBLE);
+                txt_q_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4600);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_e_5.setVisibility(View.INVISIBLE);
+                txt_p_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4650);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_f_5.setVisibility(View.INVISIBLE);
+                txt_o_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4700);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_g_5.setVisibility(View.INVISIBLE);
+                txt_n_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4750);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_h_5.setVisibility(View.INVISIBLE);
+                txt_m_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4800);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_i_5.setVisibility(View.INVISIBLE);
+                txt_l_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4850);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_j_5.setVisibility(View.INVISIBLE);
+                txt_k_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4900);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_k_5.setVisibility(View.INVISIBLE);
+                txt_j_6.setVisibility(View.INVISIBLE);
+            }
+        }, 4950);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_l_5.setVisibility(View.INVISIBLE);
+                txt_i_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_m_5.setVisibility(View.INVISIBLE);
+                txt_h_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5050);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_n_5.setVisibility(View.INVISIBLE);
+                txt_g_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5100);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_o_5.setVisibility(View.INVISIBLE);
+                txt_f_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5150);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_p_5.setVisibility(View.INVISIBLE);
+                txt_e_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5200);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_q_5.setVisibility(View.INVISIBLE);
+                txt_d_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5250);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_r_5.setVisibility(View.INVISIBLE);
+                txt_c_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5300);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_s_5.setVisibility(View.INVISIBLE);
+                txt_b_6.setVisibility(View.INVISIBLE);
+            }
+        }, 5350);
+
+        // Sixth round
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_b_6.setVisibility(View.VISIBLE);
+                txt_b_6.setBackgroundResource(R.drawable.layout_blue);
+
+                txt_s_5.setVisibility(View.VISIBLE);
+                txt_s_6.setBackgroundResource(R.drawable.layout_red);
+            }
+        }, 5800);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_c_6.setVisibility(View.VISIBLE);
+                txt_c_6.setBackgroundResource(R.drawable.layout_blue);
+
+                txt_r_5.setVisibility(View.VISIBLE);
+                txt_r_5.setBackgroundResource(R.drawable.layout_red);
+            }
+        }, 5850);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_d_6.setVisibility(View.VISIBLE);
+                txt_d_6.setBackgroundResource(R.drawable.layout_blue);
+
+                txt_q_5.setVisibility(View.VISIBLE);
+                txt_q_5.setBackgroundResource(R.drawable.layout_red);
+            }
+        }, 5900);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_e_6.setVisibility(View.VISIBLE);
+                txt_e_6.setBackgroundResource(R.drawable.layout_blue);
+
+                txt_p_5.setVisibility(View.VISIBLE);
+                txt_p_5.setBackgroundResource(R.drawable.layout_red);
+            }
+        }, 5950);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_f_6.setVisibility(View.VISIBLE);
+                txt_f_6.setBackgroundResource(R.drawable.layout_blue);
+
+                txt_o_5.setVisibility(View.VISIBLE);
+                txt_o_5.setBackgroundResource(R.drawable.layout_red);
+            }
+        }, 6000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_g_6.setVisibility(View.VISIBLE);
+                txt_g_6.setBackgroundResource(R.drawable.layout_blue);
+
+                txt_n_5.setVisibility(View.VISIBLE);
+                txt_n_5.setBackgroundResource(R.drawable.layout_red);
+            }
+        }, 6050);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_h_6.setVisibility(View.VISIBLE);
+                txt_h_6.setBackgroundResource(R.drawable.layout_yellow);
+
+                txt_m_5.setVisibility(View.VISIBLE);
+                txt_m_5.setBackgroundResource(R.drawable.layout_yellow);
+            }
+        }, 6100);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_i_6.setVisibility(View.VISIBLE);
+                txt_i_6.setBackgroundResource(R.drawable.layout_yellow);
+
+                txt_l_5.setVisibility(View.VISIBLE);
+                txt_l_5.setBackgroundResource(R.drawable.layout_yellow);
+            }
+        }, 6150);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_j_6.setVisibility(View.VISIBLE);
+                txt_j_6.setBackgroundResource(R.drawable.layout_yellow);
+
+                txt_k_5.setVisibility(View.VISIBLE);
+                txt_k_5.setBackgroundResource(R.drawable.layout_yellow);
+            }
+        }, 6200);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_k_6.setVisibility(View.VISIBLE);
+                txt_k_6.setBackgroundResource(R.drawable.layout_yellow);
+
+                txt_j_5.setVisibility(View.VISIBLE);
+                txt_j_5.setBackgroundResource(R.drawable.layout_yellow);
+            }
+        }, 6250);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_l_6.setVisibility(View.VISIBLE);
+                txt_l_6.setBackgroundResource(R.drawable.layout_yellow);
+
+                txt_i_5.setVisibility(View.VISIBLE);
+                txt_i_5.setBackgroundResource(R.drawable.layout_yellow);
+            }
+        }, 6300);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_m_6.setVisibility(View.VISIBLE);
+                txt_m_6.setBackgroundResource(R.drawable.layout_yellow);
+
+                txt_h_5.setVisibility(View.VISIBLE);
+                txt_h_5.setBackgroundResource(R.drawable.layout_yellow);
+            }
+        }, 6350);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_n_6.setVisibility(View.VISIBLE);
+                txt_n_6.setBackgroundResource(R.drawable.layout_red);
+
+                txt_g_5.setVisibility(View.VISIBLE);
+                txt_g_5.setBackgroundResource(R.drawable.layout_blue);
+            }
+        }, 6400);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_o_6.setVisibility(View.VISIBLE);
+                txt_o_6.setBackgroundResource(R.drawable.layout_red);
+
+                txt_f_5.setVisibility(View.VISIBLE);
+                txt_f_5.setBackgroundResource(R.drawable.layout_blue);
+            }
+        }, 6450);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_p_6.setVisibility(View.VISIBLE);
+                txt_p_6.setBackgroundResource(R.drawable.layout_red);
+
+                txt_e_5.setVisibility(View.VISIBLE);
+                txt_e_5.setBackgroundResource(R.drawable.layout_blue);
+            }
+        }, 6500);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_q_6.setVisibility(View.VISIBLE);
+                txt_q_6.setBackgroundResource(R.drawable.layout_red);
+
+                txt_d_5.setVisibility(View.VISIBLE);
+                txt_d_5.setBackgroundResource(R.drawable.layout_blue);
+            }
+        }, 6550);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_r_6.setVisibility(View.VISIBLE);
+                txt_r_6.setBackgroundResource(R.drawable.layout_red);
+
+                txt_c_5.setVisibility(View.VISIBLE);
+                txt_c_5.setBackgroundResource(R.drawable.layout_blue);
+            }
+        }, 6600);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_s_6.setVisibility(View.VISIBLE);
+                txt_s_6.setBackgroundResource(R.drawable.layout_red);
+
+                txt_b_5.setVisibility(View.VISIBLE);
+                txt_b_5.setBackgroundResource(R.drawable.layout_blue);
+            }
+        }, 6650);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_by_Stufflex.setVisibility(View.INVISIBLE);
+                SetDrawableUpAndDownTXTS_DOWN();
+            }
+        }, 6651);
+
+        // Splash screen time-limit
+        handler_special = new Handler();
+        runnable_special = new Runnable() {
+            @Override
+            public void run() {
+                Intent toMainActivity = new Intent(SplashActivity.this, MainActivity.class);
+                SplashActivity.this.startActivity(toMainActivity);
+                SplashActivity.this.finish();
+            }
+        };
+        handler_special.postDelayed(runnable_special, 8000);
+
+    }
+
+    // Go to MainActivity
+    public void GoToMainActivity() {
+        Intent toMainActivity = new Intent(SplashActivity.this, MainActivity.class);
+        SplashActivity.this.startActivity(toMainActivity);
+        SplashActivity.this.finish();
     }
 }

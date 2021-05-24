@@ -2901,7 +2901,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_95"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_9" />
-
     <!-- END freestyle box day -->
+
+    <!-- BEGIN click_to_end -->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clickToEndLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.constraint.ConstraintLayout>
+    <!-- END click_to_end -->
 
 </android.support.constraint.ConstraintLayout>
