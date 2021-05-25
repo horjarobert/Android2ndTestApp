@@ -1,5 +1,7 @@
 package com.stufflex.verificatorcnp;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+
 public class MainActivity extends AppCompatActivity {
 
     // Declarations
@@ -24,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
     private static final long TOAST_TIMEOUT_MS = 2000;
     private static long lastToastTime = 0;
+
+    private int int_edit_text_sexul, int_edit_text_anul, int_edit_text_luna, int_edit_text_ziua, int_edit_text_judetul, int_edit_text_numar_secvential, int_edit_text_cifra_de_control;
+    private int int_calcul_sexul, int_calcul_an_1, int_calcul_an_2, int_calcul_luna_1, int_calcul_luna_2, int_calcul_ziua_1, int_calcul_ziua_2, int_calcul_judet_1, int_calcul_judet_2,
+                int_calcul_nr_secvential_1, int_calcul_nr_secvential_2, int_calcul_nr_secvential_3, int_calcul_cifra_de_control;
+
+    private float float_calcul_cifra_de_control;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +118,31 @@ public class MainActivity extends AppCompatActivity {
         // Focus on next edit text
         FocusOnNextEditText();
 
+        btn_verificare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // S conditions
+                VerifyEditTextSexul();
 
+                // AA conditions
+                VerifyEditTextAnul();
+
+                // LL conditions
+                VerifyEditTextLuna();
+
+                // ZZ conditions
+                VerifyEditTextZiua();
+
+                // JJ conditions
+                VerifyEditTextJudetul();
+
+                // NNN conditions
+                VerifyEditTextNumarSecvential();
+
+                // C conditions
+                VerifyEditTextCifraDeControl();
+            }
+        });
 
 
     }
@@ -151,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void FocusOnNextEditText(){
+    public void FocusOnNextEditText() {
         edit_text_sexul.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -160,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(edit_text_sexul.length() == 1) {
+                if (edit_text_sexul.length() == 1) {
                     edit_text_anul.requestFocus();
                 }
             }
@@ -180,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(edit_text_anul.length() == 2) {
+                if (edit_text_anul.length() == 2) {
                     edit_text_luna.requestFocus();
                 }
             }
@@ -200,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(edit_text_luna.length() == 2) {
+                if (edit_text_luna.length() == 2) {
                     edit_text_ziua.requestFocus();
                 }
             }
@@ -220,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(edit_text_ziua.length() == 2) {
+                if (edit_text_ziua.length() == 2) {
                     edit_text_judetul.requestFocus();
                 }
             }
@@ -240,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(edit_text_judetul.length() == 2) {
+                if (edit_text_judetul.length() == 2) {
                     edit_text_numar_secvential.requestFocus();
                 }
             }
@@ -260,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(edit_text_numar_secvential.length() == 3) {
+                if (edit_text_numar_secvential.length() == 3) {
                     edit_text_cifra_de_control.requestFocus();
                 }
             }
@@ -290,8 +324,321 @@ public class MainActivity extends AppCompatActivity {
                 hideNavigationBar();
             }
         });
+    }
 
+    public void VerifyEditTextSexul() {
+        if (edit_text_sexul.length() > 0) {
+            int_edit_text_sexul = Integer.parseInt(edit_text_sexul.getText().toString());
+            if (int_edit_text_sexul >= 1 && int_edit_text_sexul <= 8) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_sexul.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_sexul.setTextColor(Color.GREEN);
+                    }
+                }, 0);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_sexul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_sexul.setTextColor(Color.RED);
+                    }
+                }, 0);
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    edit_text_sexul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_sexul.setTextColor(Color.RED);
+                }
+            }, 0);
+        }
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                edit_text_sexul.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                edit_text_sexul.setTextColor(Color.BLACK);
+            }
+        }, 2000);
+    }
 
+    public void VerifyEditTextAnul() {
+        if (edit_text_anul.length() > 0) {
+            int_edit_text_anul = Integer.parseInt(edit_text_anul.getText().toString());
+            if (edit_text_anul.length() == 2) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_anul.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_anul.setTextColor(Color.GREEN);
+                    }
+                }, 0);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_anul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_anul.setTextColor(Color.RED);
+                    }
+                }, 0);
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    edit_text_anul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_anul.setTextColor(Color.RED);
+                }
+            }, 0);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                edit_text_anul.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                edit_text_anul.setTextColor(Color.BLACK);
+            }
+        }, 2000);
+    }
+
+    public void VerifyEditTextLuna() {
+        if (edit_text_luna.length() > 0) {
+            int_edit_text_luna = Integer.parseInt(edit_text_luna.getText().toString());
+            if (int_edit_text_luna >= 1 && int_edit_text_luna <= 12 && edit_text_luna.length() == 2) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_luna.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_luna.setTextColor(Color.GREEN);
+                    }
+                }, 0);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_luna.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_luna.setTextColor(Color.RED);
+                    }
+                }, 0);
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    edit_text_luna.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_luna.setTextColor(Color.RED);
+                }
+            }, 0);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                edit_text_luna.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                edit_text_luna.setTextColor(Color.BLACK);
+            }
+        }, 2000);
+    }
+
+    public void VerifyEditTextZiua() {
+        if (edit_text_ziua.length() > 0) {
+            int_edit_text_ziua = Integer.parseInt(edit_text_ziua.getText().toString());
+            if (int_edit_text_ziua >= 1 && int_edit_text_ziua <= 31 && edit_text_ziua.length() == 2) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_ziua.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_ziua.setTextColor(Color.GREEN);
+                    }
+                }, 0);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_ziua.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_ziua.setTextColor(Color.RED);
+                    }
+                }, 0);
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    edit_text_ziua.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_ziua.setTextColor(Color.RED);
+                }
+            }, 0);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                edit_text_ziua.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                edit_text_ziua.setTextColor(Color.BLACK);
+            }
+        }, 2000);
+    }
+
+    public void VerifyEditTextJudetul() {
+        if (edit_text_judetul.length() > 0) {
+            int_edit_text_judetul = Integer.parseInt(edit_text_judetul.getText().toString());
+            if ((int_edit_text_judetul >= 1 && int_edit_text_judetul <= 46 || (int_edit_text_judetul == 51 || int_edit_text_judetul == 52)) && edit_text_judetul.length() == 2) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_judetul.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_judetul.setTextColor(Color.GREEN);
+                    }
+                }, 0);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_judetul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_judetul.setTextColor(Color.RED);
+                    }
+                }, 0);
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    edit_text_judetul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_judetul.setTextColor(Color.RED);
+                }
+            }, 0);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                edit_text_judetul.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                edit_text_judetul.setTextColor(Color.BLACK);
+            }
+        }, 2000);
+    }
+
+    public void VerifyEditTextNumarSecvential(){
+        if (edit_text_numar_secvential.length() > 0) {
+            int_edit_text_numar_secvential = Integer.parseInt(edit_text_numar_secvential.getText().toString());
+            if (edit_text_numar_secvential.length() == 3) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_numar_secvential.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_numar_secvential.setTextColor(Color.GREEN);
+                    }
+                }, 0);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_judetul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_judetul.setTextColor(Color.RED);
+                    }
+                }, 0);
+            }
+        }
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    edit_text_numar_secvential.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_numar_secvential.setTextColor(Color.RED);
+                }
+            }, 0);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                edit_text_numar_secvential.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                edit_text_numar_secvential.setTextColor(Color.BLACK);
+            }
+        }, 2000);
+    }
+
+    public void VerifyEditTextCifraDeControl(){
+        CalculeazaCifraDeControl();
+
+        if (edit_text_cifra_de_control.length() > 0) {
+            int_edit_text_cifra_de_control = Integer.parseInt(edit_text_cifra_de_control.getText().toString());
+            if (edit_text_cifra_de_control.length() == 1 && int_edit_text_cifra_de_control  == int_calcul_cifra_de_control) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_cifra_de_control.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_cifra_de_control.setTextColor(Color.GREEN);
+                    }
+                }, 0);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        edit_text_cifra_de_control.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_cifra_de_control.setTextColor(Color.RED);
+                    }
+                }, 0);
+            }
+        }
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    edit_text_cifra_de_control.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_cifra_de_control.setTextColor(Color.RED);
+                }
+            }, 0);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                edit_text_cifra_de_control.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                edit_text_cifra_de_control.setTextColor(Color.BLACK);
+            }
+        }, 2000);
+    }
+
+    public void CalculeazaCifraDeControl() {
+        if (edit_text_sexul.length() == 1 && edit_text_anul.length() == 2 && edit_text_luna.length() == 2 && edit_text_ziua.length() == 2 && edit_text_judetul.length() == 2 && edit_text_numar_secvential.length() == 3) {
+            int_edit_text_sexul = Integer.parseInt(edit_text_sexul.getText().toString());
+            int_edit_text_anul = Integer.parseInt(edit_text_anul.getText().toString());
+            int_edit_text_luna = Integer.parseInt(edit_text_luna.getText().toString());
+            int_edit_text_ziua = Integer.parseInt(edit_text_ziua.getText().toString());
+            int_edit_text_judetul = Integer.parseInt(edit_text_judetul.getText().toString());
+            int_edit_text_numar_secvential = Integer.parseInt(edit_text_numar_secvential.getText().toString());
+
+            // Calcul pentru 2 7 9 1 4 6 3 5 8 2 7 9
+            int_calcul_sexul = int_edit_text_sexul * 2;
+
+            int_calcul_an_1 = Integer.parseInt(String.valueOf(edit_text_anul.getText().toString().charAt(0))) * 7;
+            int_calcul_an_2 = Integer.parseInt(String.valueOf(edit_text_anul.getText().toString().charAt(1))) * 9;
+
+            int_calcul_luna_1 = Integer.parseInt(String.valueOf(edit_text_luna.getText().toString().charAt(0))) * 1;
+            int_calcul_luna_2 = Integer.parseInt(String.valueOf(edit_text_luna.getText().toString().charAt(1))) * 4;
+
+            int_calcul_ziua_1 = Integer.parseInt(String.valueOf(edit_text_ziua.getText().toString().charAt(0))) * 6;
+            int_calcul_ziua_2 = Integer.parseInt(String.valueOf(edit_text_ziua.getText().toString().charAt(1))) * 3;
+
+            int_calcul_judet_1 = Integer.parseInt(String.valueOf(edit_text_judetul.getText().toString().charAt(0))) * 5;
+            int_calcul_judet_2 = Integer.parseInt(String.valueOf(edit_text_judetul.getText().toString().charAt(1))) * 8;
+
+            int_calcul_nr_secvential_1 = Integer.parseInt(String.valueOf(edit_text_numar_secvential.getText().toString().charAt(0))) * 2;
+            int_calcul_nr_secvential_2 = Integer.parseInt(String.valueOf(edit_text_numar_secvential.getText().toString().charAt(1))) * 7;
+            int_calcul_nr_secvential_3 = Integer.parseInt(String.valueOf(edit_text_numar_secvential.getText().toString().charAt(2))) * 9;
+
+            int_calcul_cifra_de_control = (
+                    int_calcul_sexul + int_calcul_an_1 + int_calcul_an_2 + int_calcul_luna_1 + int_calcul_luna_2 + int_calcul_ziua_1 + int_calcul_ziua_2 +
+                            int_calcul_judet_1 + int_calcul_judet_2 + int_calcul_nr_secvential_1 + int_calcul_nr_secvential_2 + int_calcul_nr_secvential_3
+                    ) % 11 ;
+
+           if (int_calcul_cifra_de_control == 10) {
+                int_calcul_cifra_de_control = 1;
+            }
+        }
     }
 }
