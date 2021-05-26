@@ -87,12 +87,14 @@ public class MainActivity extends AppCompatActivity {
         edit_text_numar_secvential.setVisibility(View.INVISIBLE);
         edit_text_cifra_de_control.setVisibility(View.INVISIBLE);
 
-        // Set animations
-        anim_btn_exclamation_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_sus_in_jos);
-        anim_btn_question_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_jos_in_sus);
+        btn_question_mark.setVisibility(View.INVISIBLE);
+        btn_exclamation_mark.setVisibility(View.INVISIBLE);
 
-        btn_exclamation_mark.setAnimation(anim_btn_exclamation_mark);
-        btn_question_mark.setAnimation(anim_btn_question_mark);
+        // Set animations
+        anim_btn_exclamation_mark = AnimationUtils.loadAnimation(this, R.anim.btn_left_to_right);
+        anim_btn_question_mark = AnimationUtils.loadAnimation(this, R.anim.btn_left_to_right);
+
+        BtnsAnimations();
 
         // Fullscreen
         mainLayout.setOnClickListener(new View.OnClickListener() {
@@ -812,4 +814,20 @@ public class MainActivity extends AppCompatActivity {
         }, 800);
     }
 
+    public void BtnsAnimations() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn_question_mark.setAnimation(anim_btn_question_mark);
+                btn_question_mark.setVisibility(View.VISIBLE);
+            }
+        }, 600);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn_exclamation_mark.setAnimation(anim_btn_exclamation_mark);
+                btn_exclamation_mark.setVisibility(View.VISIBLE);
+            }
+        }, 700);
+    }
 }
