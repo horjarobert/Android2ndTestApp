@@ -385,6 +385,7 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
+        android:onClick="GoToExclamationMarkActivity"
         android:transitionName="exclamationTransition"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_1"

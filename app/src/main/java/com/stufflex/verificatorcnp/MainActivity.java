@@ -1,5 +1,8 @@
 package com.stufflex.verificatorcnp;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +17,8 @@ import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private int int_calcul_sexul, int_calcul_an_1, int_calcul_an_2, int_calcul_luna_1, int_calcul_luna_2, int_calcul_ziua_1, int_calcul_ziua_2, int_calcul_judet_1, int_calcul_judet_2,
                 int_calcul_nr_secvential_1, int_calcul_nr_secvential_2, int_calcul_nr_secvential_3, int_calcul_cifra_de_control;
 
-    private float float_calcul_cifra_de_control;
+    private AnimatorSet setDownAndUp_Sexul, setDownAndUp_Anul, setDownAndUp_Luna, setDownAndUp_Ziua, setDownAndUp_Judetul,
+                        setDownAndUp_NumarSecvential, setDownAndUp_CifraDeControl;
+
+    private Animator scaleUp_Sexul, scaleUp_Anul, scaleUp_Luna, scaleUp_Ziua, scaleUp_Judetul, scaleUp_NumarSecvential, scaleUp_CifraDeControl;
+    private Animator scaleDown_Sexul, scaleDown_Anul, scaleDown_Luna, scaleDown_Ziua, scaleDown_Judetul, scaleDown_NumarSecvential, scaleDown_CifraDeControl;
+
+    private Animation anim_btn_question_mark, anim_btn_exclamation_mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +78,21 @@ public class MainActivity extends AppCompatActivity {
 
         // Hide this
         txt_reimprospatare.setVisibility(View.INVISIBLE);
+
+        edit_text_sexul.setVisibility(View.INVISIBLE);
+        edit_text_anul.setVisibility(View.INVISIBLE);
+        edit_text_luna.setVisibility(View.INVISIBLE);
+        edit_text_ziua.setVisibility(View.INVISIBLE);
+        edit_text_judetul.setVisibility(View.INVISIBLE);
+        edit_text_numar_secvential.setVisibility(View.INVISIBLE);
+        edit_text_cifra_de_control.setVisibility(View.INVISIBLE);
+
+        // Set animations
+        anim_btn_exclamation_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_sus_in_jos);
+        anim_btn_question_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_jos_in_sus);
+
+        btn_exclamation_mark.setAnimation(anim_btn_exclamation_mark);
+        btn_question_mark.setAnimation(anim_btn_question_mark);
 
         // Fullscreen
         mainLayout.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +181,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Start edit texts animations
+        ScaleDownAndUpAnimations();
 
     }
 
@@ -177,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         hideNavigationBar();
+
+        ScaleDownAndUpAnimations();
     }
 
     // Refresh the app - clear all edit text boxes
@@ -547,8 +577,8 @@ public class MainActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        edit_text_judetul.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
-                        edit_text_judetul.setTextColor(Color.RED);
+                        edit_text_numar_secvential.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                        edit_text_numar_secvential.setTextColor(Color.RED);
                     }
                 }, 0);
             }
@@ -656,13 +686,130 @@ public class MainActivity extends AppCompatActivity {
     public void GoToQuestionMarkActivity(View v){
         Intent goToQuestionMarkActivity = new Intent(MainActivity.this, QuestionMarkActivity.class);
 
-        Pair[] pairs = new Pair[2];
+        Pair[] pairs = new Pair[1];
 
         pairs[0] = new Pair<View, String>(btn_question_mark, "questionTransition");
-        pairs[1] = new Pair<View, String>(btn_exclamation_mark, "exclamationTransition");
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
         startActivity(goToQuestionMarkActivity, options.toBundle());
 
     }
+
+    public void GoToExclamationMarkActivity(View v){
+        Intent goToExclamationMarkActivity = new Intent(MainActivity.this, ExclamationMarkActivity.class);
+
+        Pair[] pairs = new Pair[1];
+
+        pairs[0] = new Pair<View, String>(btn_exclamation_mark, "exclamationTransition");
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+        startActivity(goToExclamationMarkActivity, options.toBundle());
+
+    }
+
+    public void ScaleDownAndUpAnimations() {
+        // Special guest | Animation for edit_text_sexul
+        scaleDown_Sexul = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
+        scaleDown_Sexul.setTarget(edit_text_sexul);
+
+        scaleUp_Sexul = AnimatorInflater.loadAnimator(this, R.animator.scale_up);
+
+        setDownAndUp_Sexul = new AnimatorSet();
+        setDownAndUp_Sexul.playSequentially(scaleDown_Sexul, scaleUp_Sexul);
+
+        // Special guest | Animation for edit_text_sexul
+        scaleDown_Anul = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
+        scaleDown_Anul.setTarget(edit_text_anul);
+
+        scaleUp_Anul = AnimatorInflater.loadAnimator(this, R.animator.scale_up);
+
+        setDownAndUp_Anul = new AnimatorSet();
+        setDownAndUp_Anul.playSequentially(scaleDown_Anul, scaleUp_Anul);
+
+        // Special guest | Animation for edit_text_luna
+        scaleDown_Luna = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
+        scaleDown_Luna.setTarget(edit_text_luna);
+
+        scaleUp_Luna = AnimatorInflater.loadAnimator(this, R.animator.scale_up);
+
+        setDownAndUp_Luna = new AnimatorSet();
+        setDownAndUp_Luna.playSequentially(scaleDown_Luna, scaleUp_Luna);
+
+        // Special guest | Animation for edit_text_ziua
+        scaleDown_Ziua = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
+        scaleDown_Ziua.setTarget(edit_text_ziua);
+
+        scaleUp_Ziua = AnimatorInflater.loadAnimator(this, R.animator.scale_up);
+
+        setDownAndUp_Ziua = new AnimatorSet();
+        setDownAndUp_Ziua.playSequentially(scaleDown_Ziua, scaleUp_Ziua);
+
+        // Special guest | Animation for edit_text_judetul
+        scaleDown_Judetul = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
+        scaleDown_Judetul.setTarget(edit_text_judetul);
+
+        scaleUp_Judetul = AnimatorInflater.loadAnimator(this, R.animator.scale_up);
+
+        setDownAndUp_Judetul = new AnimatorSet();
+        setDownAndUp_Judetul.playSequentially(scaleDown_Judetul, scaleUp_Judetul);
+
+        // Special guest | Animation for edit_text_numar_secvential
+        scaleDown_NumarSecvential = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
+        scaleDown_NumarSecvential.setTarget(edit_text_numar_secvential);
+
+        scaleUp_NumarSecvential = AnimatorInflater.loadAnimator(this, R.animator.scale_up);
+
+        setDownAndUp_NumarSecvential = new AnimatorSet();
+        setDownAndUp_NumarSecvential.playSequentially(scaleDown_NumarSecvential, scaleUp_NumarSecvential);
+
+        // Special guest | Animation for edit_text_cifra_de_control
+        scaleDown_CifraDeControl = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
+        scaleDown_CifraDeControl.setTarget(edit_text_cifra_de_control);
+
+        scaleUp_CifraDeControl = AnimatorInflater.loadAnimator(this, R.animator.scale_up);
+
+        setDownAndUp_CifraDeControl = new AnimatorSet();
+        setDownAndUp_CifraDeControl.playSequentially(scaleDown_CifraDeControl, scaleUp_CifraDeControl);
+
+        // Animations order
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setDownAndUp_Ziua.start();
+                edit_text_ziua.setVisibility(View.VISIBLE);
+
+            }
+        }, 200);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setDownAndUp_Luna.start();
+                setDownAndUp_Judetul.start();
+
+                edit_text_luna.setVisibility(View.VISIBLE);
+                edit_text_judetul.setVisibility(View.VISIBLE);
+            }
+        }, 400);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setDownAndUp_Anul.start();
+                setDownAndUp_NumarSecvential.start();
+
+                edit_text_anul.setVisibility(View.VISIBLE);
+                edit_text_numar_secvential.setVisibility(View.VISIBLE);
+            }
+        }, 600);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setDownAndUp_Sexul.start();
+                setDownAndUp_CifraDeControl.start();
+
+                edit_text_sexul.setVisibility(View.VISIBLE);
+                edit_text_cifra_de_control.setVisibility(View.VISIBLE);
+            }
+        }, 800);
+    }
+
 }

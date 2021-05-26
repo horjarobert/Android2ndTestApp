@@ -39,6 +39,7 @@
     <string name="str_home">🇷🇴</string>
 
     <string name="str_reimprospatare">Reîmprospătare</string>
+    <string name="str_restart">Restart</string>
 
     <string name="str_tooltip_sexul">Sexul și secolul nașterii</string>
     <string name="str_tooltip_anul">Ultimele două cifre din anul nașterii</string>

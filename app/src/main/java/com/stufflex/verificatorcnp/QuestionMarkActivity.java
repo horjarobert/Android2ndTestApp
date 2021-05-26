@@ -10,8 +10,6 @@ public class QuestionMarkActivity extends AppCompatActivity {
 
     // Declarations
     private Button btn_question_mark;
-    private Button btn_home_mark;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +21,6 @@ public class QuestionMarkActivity extends AppCompatActivity {
 
         // Initializations
         btn_question_mark = findViewById(R.id.btn_question_mark);
-        btn_home_mark = findViewById(R.id.btn_home_mark);
 
     }
 

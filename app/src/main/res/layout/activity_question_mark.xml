@@ -220,37 +220,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/color_green"
-        android:enabled="false"
         android:gravity="center"
         android:text="@string/str_question_mark"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:transitionName="questionTransition"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vt_95"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_home_mark"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/btn_gray_heavy"
-        android:gravity="center"
         android:onClick="GoToMainActivity"
-        android:text="@string/str_home"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:transitionName="exclamationTransition"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vt_05"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vt_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
 
     <!-- END buttons -->
 
