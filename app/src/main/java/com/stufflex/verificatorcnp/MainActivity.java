@@ -1,5 +1,7 @@
 package com.stufflex.verificatorcnp;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Handler;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -88,6 +91,14 @@ public class MainActivity extends AppCompatActivity {
                     edit_text_judetul.setText("");
                     edit_text_numar_secvential.setText("");
                     edit_text_cifra_de_control.setText("");
+
+                    edit_text_sexul.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_anul.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_luna.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_ziua.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_judetul.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_numar_secvential.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+                    edit_text_cifra_de_control.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
 
                     Reimprospatare();
 
@@ -640,5 +651,18 @@ public class MainActivity extends AppCompatActivity {
                 int_calcul_cifra_de_control = 1;
             }
         }
+    }
+
+    public void GoToQuestionMarkActivity(View v){
+        Intent goToQuestionMarkActivity = new Intent(MainActivity.this, QuestionMarkActivity.class);
+
+        Pair[] pairs = new Pair[2];
+
+        pairs[0] = new Pair<View, String>(btn_question_mark, "questionTransition");
+        pairs[1] = new Pair<View, String>(btn_exclamation_mark, "exclamationTransition");
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+        startActivity(goToQuestionMarkActivity, options.toBundle());
+
     }
 }

@@ -9,34 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VerificatorCNP">
-        <activity android:name=".InvalidActivity"
-            android:screenOrientation="landscape"
-            >
 
-        </activity>
+        <activity android:name=".ExclamationMarkActivity"
+            android:screenOrientation="landscape"/>
 
-        <activity android:name=".ValidActivity"
-            android:screenOrientation="landscape"
-            />
+        <activity android:name=".QuestionMarkActivity"
+            android:screenOrientation="landscape"/>
 
         <activity
             android:name=".SplashActivity"
-            android:screenOrientation="landscape"
-            >
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-         </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="landscape" />
 
     </application>
 
