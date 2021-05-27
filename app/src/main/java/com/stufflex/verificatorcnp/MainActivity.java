@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
         btn_exclamation_mark.setVisibility(View.INVISIBLE);
 
         // Set animations
-        anim_btn_exclamation_mark = AnimationUtils.loadAnimation(this, R.anim.btn_left_to_right);
-        anim_btn_question_mark = AnimationUtils.loadAnimation(this, R.anim.btn_left_to_right);
+        anim_btn_exclamation_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_jos_in_sus);
+        anim_btn_question_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_sus_in_jos);
 
         BtnsAnimations();
 
@@ -820,14 +820,10 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 btn_question_mark.setAnimation(anim_btn_question_mark);
                 btn_question_mark.setVisibility(View.VISIBLE);
-            }
-        }, 600);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+
                 btn_exclamation_mark.setAnimation(anim_btn_exclamation_mark);
                 btn_exclamation_mark.setVisibility(View.VISIBLE);
             }
-        }, 700);
+        }, 900);
     }
 }
