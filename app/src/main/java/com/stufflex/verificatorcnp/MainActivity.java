@@ -9,29 +9,33 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
+import android.transition.TransitionManager;
 import android.util.Pair;
-import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
 
     // Declarations
     private TextView txt_introduceti_cnp, txt_reimprospatare;
+
+    private TextView txt_arrow_horizontal_sexul, txt_arrow_horizontal_anul, txt_arrow_horizontal_luna, txt_arrow_horizontal_ziua, txt_arrow_horizontal_judetul,
+            txt_arrow_horizontal_numar_secvential, txt_arrow_horizontal_cifra_de_control;
+
+    private TextView txt_arrow_sexul, txt_arrow_anul, txt_arrow_luna, txt_arrow_ziua, txt_arrow_judetul, txt_arrow_numar_secvential, txt_arrow_cifra_de_control;
+
     private EditText edit_text_sexul, edit_text_anul, edit_text_luna, edit_text_ziua, edit_text_judetul, edit_text_numar_secvential, edit_text_cifra_de_control;
-    private Button btn_question_mark, btn_exclamation_mark, btn_verificare, btn_refresh;
+    private Button btn_information_sign, btn_exclamation_mark, btn_verificare, btn_refresh;
     private ConstraintLayout mainLayout;
 
     private static final long TOAST_TIMEOUT_MS = 2000;
@@ -47,7 +51,22 @@ public class MainActivity extends AppCompatActivity {
     private Animator scaleUp_Sexul, scaleUp_Anul, scaleUp_Luna, scaleUp_Ziua, scaleUp_Judetul, scaleUp_NumarSecvential, scaleUp_CifraDeControl;
     private Animator scaleDown_Sexul, scaleDown_Anul, scaleDown_Luna, scaleDown_Ziua, scaleDown_Judetul, scaleDown_NumarSecvential, scaleDown_CifraDeControl;
 
-    private Animation anim_btn_question_mark, anim_btn_exclamation_mark;
+    private Animation anim_btn_information_sign, anim_btn_exclamation_mark;
+
+    private ConstraintSet constraintSetActivityOLD = new ConstraintSet();
+    private ConstraintSet constraintSetActivityNEW = new ConstraintSet();
+
+    private boolean verificareIsClicked = false;
+    private boolean checkIfTrue_1 = false;
+    private boolean checkIfTrue_2 = false;
+    private boolean checkIfTrue_3 = false;
+    private boolean checkIfTrue_4 = false;
+    private boolean checkIfTrue_5 = false;
+    private boolean checkIfTrue_6 = false;
+    private boolean checkIfTrue_7 = false;
+
+    private Handler handler1, handler2, handler3, handler4, handler5, handler6, handler7;
+    private Runnable runnable1, runnable2, runnable3, runnable4, runnable5, runnable6, runnable7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +80,22 @@ public class MainActivity extends AppCompatActivity {
         txt_introduceti_cnp = findViewById(R.id.txt_introduceti_cnp);
         txt_reimprospatare = findViewById(R.id.txt_reimprospatare);
 
+        txt_arrow_horizontal_sexul = findViewById(R.id.txt_arrow_horizontal_sexul);
+        txt_arrow_horizontal_anul = findViewById(R.id.txt_arrow_horizontal_anul);
+        txt_arrow_horizontal_luna = findViewById(R.id.txt_arrow_horizontal_luna);
+        txt_arrow_horizontal_ziua = findViewById(R.id.txt_arrow_horizontal_ziua);
+        txt_arrow_horizontal_judetul = findViewById(R.id.txt_arrow_horizontal_judetul);
+        txt_arrow_horizontal_numar_secvential = findViewById(R.id.txt_arrow_horizontal_numar_secvential);
+        txt_arrow_horizontal_cifra_de_control = findViewById(R.id.txt_arrow_horizontal_cifra_de_control);
+
+        txt_arrow_sexul = findViewById(R.id.txt_arrow_sexul);
+        txt_arrow_anul = findViewById(R.id.txt_arrow_anul);
+        txt_arrow_luna = findViewById(R.id.txt_arrow_luna);
+        txt_arrow_ziua = findViewById(R.id.txt_arrow_ziua);
+        txt_arrow_judetul = findViewById(R.id.txt_arrow_judetul);
+        txt_arrow_numar_secvential = findViewById(R.id.txt_arrow_numar_secvential);
+        txt_arrow_cifra_de_control = findViewById(R.id.txt_arrow_cifra_de_control);
+
         edit_text_sexul = findViewById(R.id.edit_text_sexul);
         edit_text_anul = findViewById(R.id.edit_text_anul);
         edit_text_luna = findViewById(R.id.edit_text_luna);
@@ -69,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         edit_text_numar_secvential = findViewById(R.id.edit_text_numar_secvential);
         edit_text_cifra_de_control = findViewById(R.id.edit_text_cifra_de_control);
 
-        btn_question_mark = findViewById(R.id.btn_question_mark);
+        btn_information_sign = findViewById(R.id.btn_information_sign);
         btn_exclamation_mark = findViewById(R.id.btn_exclamation_mark);
         btn_verificare = findViewById(R.id.btn_verificare);
         btn_refresh = findViewById(R.id.btn_refresh);
@@ -87,14 +122,18 @@ public class MainActivity extends AppCompatActivity {
         edit_text_numar_secvential.setVisibility(View.INVISIBLE);
         edit_text_cifra_de_control.setVisibility(View.INVISIBLE);
 
-        btn_question_mark.setVisibility(View.INVISIBLE);
+        btn_information_sign.setVisibility(View.INVISIBLE);
         btn_exclamation_mark.setVisibility(View.INVISIBLE);
 
         // Set animations
         anim_btn_exclamation_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_jos_in_sus);
-        anim_btn_question_mark = AnimationUtils.loadAnimation(this, R.anim.btn_de_sus_in_jos);
+        anim_btn_information_sign = AnimationUtils.loadAnimation(this, R.anim.btn_de_sus_in_jos);
 
         BtnsAnimations();
+
+        // Cloning
+        constraintSetActivityOLD.clone(mainLayout);
+        constraintSetActivityNEW.clone(this, R.layout.clone_activity_main);
 
         // Fullscreen
         mainLayout.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ScaleDownAndUpAnimations();
+
                 if (edit_text_sexul.length() > 0 || edit_text_anul.length() > 0 || edit_text_luna.length() > 0 || edit_text_ziua.length() > 0 ||
                         edit_text_judetul.length() > 0 || edit_text_numar_secvential.length() > 0 || edit_text_cifra_de_control.length() > 0) {
 
@@ -180,12 +222,14 @@ public class MainActivity extends AppCompatActivity {
 
                 // C conditions
                 VerifyEditTextCifraDeControl();
+
+                // Start edit texts animations
+                ScaleDownAndUpAnimations();
+
+                // New layout
+                GoToTheNewLayout();
             }
         });
-
-        // Start edit texts animations
-        ScaleDownAndUpAnimations();
-
     }
 
     // Hide the navigation bar and make full screen all app
@@ -215,6 +259,8 @@ public class MainActivity extends AppCompatActivity {
     public void Reimprospatare() {
 
         txt_reimprospatare.setVisibility(View.VISIBLE);
+
+        ScaleDownAndUpAnimations();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -380,6 +426,11 @@ public class MainActivity extends AppCompatActivity {
                         edit_text_sexul.setTextColor(Color.GREEN);
                     }
                 }, 0);
+                if (int_edit_text_sexul % 2 == 0) {
+                    txt_arrow_horizontal_sexul.setText("Feminin");
+                } else {
+                    txt_arrow_horizontal_sexul.setText("Masculin");
+                }
             } else {
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -419,6 +470,19 @@ public class MainActivity extends AppCompatActivity {
                         edit_text_anul.setTextColor(Color.GREEN);
                     }
                 }, 0);
+                if (edit_text_sexul.length() > 0) {
+                    int_edit_text_sexul = Integer.parseInt(edit_text_sexul.getText().toString());
+                    if (int_edit_text_sexul == 1 || int_edit_text_sexul == 2) {
+                        txt_arrow_horizontal_anul.setText("19" + edit_text_anul.getText().toString());
+                    } else if (int_edit_text_sexul == 3 || int_edit_text_sexul == 4) {
+                        txt_arrow_horizontal_anul.setText("18" + edit_text_anul.getText().toString());
+                    } else if (int_edit_text_sexul == 5 || int_edit_text_sexul == 6) {
+                        txt_arrow_horizontal_anul.setText("20" + edit_text_anul.getText().toString());
+                    }else if (int_edit_text_sexul == 7 || int_edit_text_sexul == 8) {
+                        txt_arrow_horizontal_anul.setText("Rezident");
+                    }
+                }
+
             } else {
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -458,6 +522,45 @@ public class MainActivity extends AppCompatActivity {
                         edit_text_luna.setTextColor(Color.GREEN);
                     }
                 }, 0);
+
+                switch (int_edit_text_luna) {
+                    case 1:
+                        txt_arrow_horizontal_luna.setText("Ianuarie");
+                        break;
+                    case 2:
+                        txt_arrow_horizontal_luna.setText("Februarie");
+                        break;
+                    case 3:
+                        txt_arrow_horizontal_luna.setText("Martie");
+                        break;
+                    case 4:
+                        txt_arrow_horizontal_luna.setText("Aprilie");
+                        break;
+                    case 5:
+                        txt_arrow_horizontal_luna.setText("Mai");
+                        break;
+                    case 6:
+                        txt_arrow_horizontal_luna.setText("Iunie");
+                        break;
+                    case 7:
+                        txt_arrow_horizontal_luna.setText("Iulie");
+                        break;
+                    case 8:
+                        txt_arrow_horizontal_luna.setText("August");
+                        break;
+                    case 9:
+                        txt_arrow_horizontal_luna.setText("Septembrie");
+                        break;
+                    case 10:
+                        txt_arrow_horizontal_luna.setText("Octombrie");
+                        break;
+                    case 11:
+                        txt_arrow_horizontal_luna.setText("Noiembrie");
+                        break;
+                    case 12:
+                        txt_arrow_horizontal_luna.setText("Decembrie");
+                        break;
+                }
             } else {
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -497,6 +600,9 @@ public class MainActivity extends AppCompatActivity {
                         edit_text_ziua.setTextColor(Color.GREEN);
                     }
                 }, 0);
+
+                txt_arrow_horizontal_ziua.setText(R.string.string_baby);
+
             } else {
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -536,6 +642,154 @@ public class MainActivity extends AppCompatActivity {
                         edit_text_judetul.setTextColor(Color.GREEN);
                     }
                 }, 0);
+
+                switch (int_edit_text_judetul) {
+                    case 1:
+                        txt_arrow_horizontal_judetul.setText("Alba");
+                        break;
+                    case 2:
+                        txt_arrow_horizontal_judetul.setText("Arad");
+                        break;
+                    case 3:
+                        txt_arrow_horizontal_judetul.setText("Argeș");
+                        break;
+                    case 4:
+                        txt_arrow_horizontal_judetul.setText("Bacău");
+                        break;
+                    case 5:
+                        txt_arrow_horizontal_judetul.setText("Bihor");
+                        break;
+                    case 6:
+                        txt_arrow_horizontal_judetul.setText("Bistrița-Năsăud");
+                        break;
+                    case 7:
+                        txt_arrow_horizontal_judetul.setText("Botoșani");
+                        break;
+                    case 8:
+                        txt_arrow_horizontal_judetul.setText("Brașov");
+                        break;
+                    case 9:
+                        txt_arrow_horizontal_judetul.setText("Brăila");
+                        break;
+                    case 10:
+                        txt_arrow_horizontal_judetul.setText("Buzău");
+                        break;
+                    case 11:
+                        txt_arrow_horizontal_judetul.setText("Caraș-Severin");
+                        break;
+                    case 12:
+                        txt_arrow_horizontal_judetul.setText("Cluj");
+                        break;
+                    case 13:
+                        txt_arrow_horizontal_judetul.setText("Constanța");
+                        break;
+                    case 14:
+                        txt_arrow_horizontal_judetul.setText("Covasna");
+                        break;
+                    case 15:
+                        txt_arrow_horizontal_judetul.setText("Dâmbovița");
+                        break;
+                    case 16:
+                        txt_arrow_horizontal_judetul.setText("Dolj");
+                        break;
+                    case 17:
+                        txt_arrow_horizontal_judetul.setText("Galați");
+                        break;
+                    case 18:
+                        txt_arrow_horizontal_judetul.setText("Gorj");
+                        break;
+                    case 19:
+                        txt_arrow_horizontal_judetul.setText("Harghita");
+                        break;
+                    case 20:
+                        txt_arrow_horizontal_judetul.setText("Hunedoara");
+                        break;
+                    case 21:
+                        txt_arrow_horizontal_judetul.setText("Ialomița");
+                        break;
+                    case 22:
+                        txt_arrow_horizontal_judetul.setText("Iași");
+                        break;
+                    case 23:
+                        txt_arrow_horizontal_judetul.setText("Ilfov");
+                        break;
+                    case 24:
+                        txt_arrow_horizontal_judetul.setText("Maramureș");
+                        break;
+                    case 25:
+                        txt_arrow_horizontal_judetul.setText("Mehedinți");
+                        break;
+                    case 26:
+                        txt_arrow_horizontal_judetul.setText("Mureș");
+                        break;
+                    case 27:
+                        txt_arrow_horizontal_judetul.setText("Neamț");
+                        break;
+                    case 28:
+                        txt_arrow_horizontal_judetul.setText("Olt");
+                        break;
+                    case 29:
+                        txt_arrow_horizontal_judetul.setText("Prahova");
+                        break;
+                    case 30:
+                        txt_arrow_horizontal_judetul.setText("Satu Mare");
+                        break;
+                    case 31:
+                        txt_arrow_horizontal_judetul.setText("Sălaj");
+                        break;
+                    case 32:
+                        txt_arrow_horizontal_judetul.setText("Sibiu");
+                        break;
+                    case 33:
+                        txt_arrow_horizontal_judetul.setText("Suceava");
+                        break;
+                    case 34:
+                        txt_arrow_horizontal_judetul.setText("Teleorman");
+                        break;
+                    case 35:
+                        txt_arrow_horizontal_judetul.setText("Timiș");
+                        break;
+                    case 36:
+                        txt_arrow_horizontal_judetul.setText("Tulcea");
+                        break;
+                    case 37:
+                        txt_arrow_horizontal_judetul.setText("Vaslui");
+                        break;
+                    case 38:
+                        txt_arrow_horizontal_judetul.setText("Vâlcea");
+                        break;
+                    case 39:
+                        txt_arrow_horizontal_judetul.setText("Vrancea");
+                        break;
+                    case 40:
+                        txt_arrow_horizontal_judetul.setText("București");
+                        break;
+                    case 41:
+                        txt_arrow_horizontal_judetul.setText("Sector 1");
+                        break;
+                    case 42:
+                        txt_arrow_horizontal_judetul.setText("Sector 2");
+                        break;
+                    case 43:
+                        txt_arrow_horizontal_judetul.setText("Sector 3");
+                        break;
+                    case 44:
+                        txt_arrow_horizontal_judetul.setText("Sector 4");
+                        break;
+                    case 45:
+                        txt_arrow_horizontal_judetul.setText("Sector 5");
+                        break;
+                    case 46:
+                        txt_arrow_horizontal_judetul.setText("Sector 6");
+                        break;
+                    case 51:
+                        txt_arrow_horizontal_judetul.setText("Călărași");
+                        break;
+                    case 52:
+                        txt_arrow_horizontal_judetul.setText("Giurgiu");
+                        break;
+                }
+
             } else {
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -567,7 +821,7 @@ public class MainActivity extends AppCompatActivity {
     public void VerifyEditTextNumarSecvential(){
         if (edit_text_numar_secvential.length() > 0) {
             int_edit_text_numar_secvential = Integer.parseInt(edit_text_numar_secvential.getText().toString());
-            if (edit_text_numar_secvential.length() == 3) {
+            if (int_edit_text_numar_secvential > 1 && edit_text_numar_secvential.length() == 3) {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -575,6 +829,9 @@ public class MainActivity extends AppCompatActivity {
                         edit_text_numar_secvential.setTextColor(Color.GREEN);
                     }
                 }, 0);
+
+                txt_arrow_horizontal_numar_secvential.setText(R.string.string_monocle);
+
             } else {
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -617,6 +874,9 @@ public class MainActivity extends AppCompatActivity {
                         edit_text_cifra_de_control.setTextColor(Color.GREEN);
                     }
                 }, 0);
+
+                txt_arrow_horizontal_cifra_de_control.setText(R.string.string_sunglasses);
+
             } else {
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -686,11 +946,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GoToQuestionMarkActivity(View v){
-        Intent goToQuestionMarkActivity = new Intent(MainActivity.this, QuestionMarkActivity.class);
+        Intent goToQuestionMarkActivity = new Intent(MainActivity.this, InformationSignActivity.class);
 
         Pair[] pairs = new Pair[1];
 
-        pairs[0] = new Pair<View, String>(btn_question_mark, "questionTransition");
+        pairs[0] = new Pair<View, String>(btn_information_sign, "informationTransition");
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
         startActivity(goToQuestionMarkActivity, options.toBundle());
@@ -818,12 +1078,187 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                btn_question_mark.setAnimation(anim_btn_question_mark);
-                btn_question_mark.setVisibility(View.VISIBLE);
+                btn_information_sign.setAnimation(anim_btn_information_sign);
+                btn_information_sign.setVisibility(View.VISIBLE);
 
                 btn_exclamation_mark.setAnimation(anim_btn_exclamation_mark);
                 btn_exclamation_mark.setVisibility(View.VISIBLE);
             }
         }, 900);
+    }
+
+    public void GoToTheNewLayout() {
+        // New Layout
+        TransitionManager.beginDelayedTransition(mainLayout);
+
+        // S conditions
+        VerifyEditTextSexul();
+
+        // AA conditions
+        VerifyEditTextAnul();
+
+        // LL conditions
+        VerifyEditTextLuna();
+
+        // ZZ conditions
+        VerifyEditTextZiua();
+
+        // JJ conditions
+        VerifyEditTextJudetul();
+
+        // NNN conditions
+        VerifyEditTextNumarSecvential();
+
+        // C conditions
+        VerifyEditTextCifraDeControl();
+
+        // Works only when all edit texts are green... otherwise not
+        if ((int_edit_text_sexul >= 1 && int_edit_text_sexul <= 8) &&
+                (edit_text_anul.length() == 2) &&
+                (int_edit_text_luna >= 1 && int_edit_text_luna <= 12 && edit_text_luna.length() == 2) &&
+                (int_edit_text_ziua >= 1 && int_edit_text_ziua <= 31 && edit_text_ziua.length() == 2) &&
+                ((int_edit_text_judetul >= 1 && int_edit_text_judetul <= 46 || (int_edit_text_judetul == 51 || int_edit_text_judetul == 52)) && edit_text_judetul.length() == 2) &&
+                (int_edit_text_numar_secvential > 1 && edit_text_numar_secvential.length() == 3) &&
+                (edit_text_cifra_de_control.length() == 1 && int_edit_text_cifra_de_control  == int_calcul_cifra_de_control)
+        ) {
+
+            if (!verificareIsClicked) {
+                constraintSetActivityNEW.applyTo(mainLayout);
+                verificareIsClicked = true;
+
+                edit_text_sexul.setEnabled(false);
+                edit_text_anul.setEnabled(false);
+                edit_text_luna.setEnabled(false);
+                edit_text_ziua.setEnabled(false);
+                edit_text_judetul.setEnabled(false);
+                edit_text_numar_secvential.setEnabled(false);
+                edit_text_cifra_de_control.setEnabled(false);
+
+                txt_introduceti_cnp.setVisibility(View.INVISIBLE);
+                btn_refresh.setVisibility(View.INVISIBLE);
+                btn_verificare.setText(R.string.str_home);
+
+                txt_arrow_sexul.setVisibility(View.VISIBLE);
+                txt_arrow_anul.setVisibility(View.VISIBLE);
+                txt_arrow_luna.setVisibility(View.VISIBLE);
+                txt_arrow_ziua.setVisibility(View.VISIBLE);
+                txt_arrow_judetul.setVisibility(View.VISIBLE);
+                txt_arrow_numar_secvential.setVisibility(View.VISIBLE);
+                txt_arrow_cifra_de_control.setVisibility(View.VISIBLE);
+
+                handler1 = new Handler();
+                runnable1 = new Runnable() {
+                    @Override
+                    public void run() {
+                        txt_arrow_horizontal_sexul.setVisibility(View.VISIBLE);
+                    }
+                };
+                handler1.postDelayed(runnable1, 1000);
+
+                handler2 = new Handler();
+                runnable2 = new Runnable() {
+                    @Override
+                    public void run() {
+                        txt_arrow_horizontal_anul.setVisibility(View.VISIBLE);
+                    }
+                };
+                handler2.postDelayed(runnable2, 1200);
+
+                handler3 = new Handler();
+                runnable3 = new Runnable() {
+                    @Override
+                    public void run() {
+                        txt_arrow_horizontal_luna.setVisibility(View.VISIBLE);
+                    }
+                };
+                handler3.postDelayed(runnable3, 1400);
+
+                handler4 = new Handler();
+                runnable4 = new Runnable() {
+                    @Override
+                    public void run() {
+                        txt_arrow_horizontal_ziua.setVisibility(View.VISIBLE);
+                    }
+                };
+                handler4.postDelayed(runnable4, 1600);
+
+                handler5 = new Handler();
+                runnable5 = new Runnable() {
+                    @Override
+                    public void run() {
+                        txt_arrow_horizontal_judetul.setVisibility(View.VISIBLE);
+                    }
+                };
+                handler5.postDelayed(runnable5, 1800);
+
+                handler6 = new Handler();
+                runnable6 = new Runnable() {
+                    @Override
+                    public void run() {
+                        txt_arrow_horizontal_numar_secvential.setVisibility(View.VISIBLE);
+                    }
+                };
+                handler6.postDelayed(runnable6, 2000);
+
+                handler7 = new Handler();
+                runnable7 = new Runnable() {
+                    @Override
+                    public void run() {
+                        txt_arrow_horizontal_cifra_de_control.setVisibility(View.VISIBLE);
+                    }
+                };
+                handler7.postDelayed(runnable7, 2200);
+
+            } else {
+                constraintSetActivityOLD.applyTo(mainLayout);
+                verificareIsClicked = false;
+
+                handler1.removeCallbacksAndMessages(null);
+                handler2.removeCallbacksAndMessages(null);
+                handler3.removeCallbacksAndMessages(null);
+                handler4.removeCallbacksAndMessages(null);
+                handler5.removeCallbacksAndMessages(null);
+                handler6.removeCallbacksAndMessages(null);
+                handler7.removeCallbacksAndMessages(null);
+
+                edit_text_sexul.setEnabled(true);
+                edit_text_anul.setEnabled(true);
+                edit_text_luna.setEnabled(true);
+                edit_text_ziua.setEnabled(true);
+                edit_text_judetul.setEnabled(true);
+                edit_text_numar_secvential.setEnabled(true);
+                edit_text_cifra_de_control.setEnabled(true);
+
+                txt_introduceti_cnp.setVisibility(View.VISIBLE);
+                btn_refresh.setVisibility(View.VISIBLE);
+                btn_verificare.setText(R.string.str_verifica_semn);
+
+                btn_information_sign.setVisibility(View.VISIBLE);
+                btn_exclamation_mark.setVisibility(View.VISIBLE);
+
+                edit_text_sexul.setVisibility(View.VISIBLE);
+                edit_text_anul.setVisibility(View.VISIBLE);
+                edit_text_luna.setVisibility(View.VISIBLE);
+                edit_text_ziua.setVisibility(View.VISIBLE);
+                edit_text_judetul.setVisibility(View.VISIBLE);
+                edit_text_numar_secvential.setVisibility(View.VISIBLE);
+                edit_text_cifra_de_control.setVisibility(View.VISIBLE);
+
+                txt_arrow_sexul.setVisibility(View.INVISIBLE);
+                txt_arrow_anul.setVisibility(View.INVISIBLE);
+                txt_arrow_luna.setVisibility(View.INVISIBLE);
+                txt_arrow_ziua.setVisibility(View.INVISIBLE);
+                txt_arrow_judetul.setVisibility(View.INVISIBLE);
+                txt_arrow_numar_secvential.setVisibility(View.INVISIBLE);
+                txt_arrow_cifra_de_control.setVisibility(View.INVISIBLE);
+
+                txt_arrow_horizontal_sexul.setVisibility(View.INVISIBLE);
+                txt_arrow_horizontal_anul.setVisibility(View.INVISIBLE);
+                txt_arrow_horizontal_luna.setVisibility(View.INVISIBLE);
+                txt_arrow_horizontal_ziua.setVisibility(View.INVISIBLE);
+                txt_arrow_horizontal_judetul.setVisibility(View.INVISIBLE);
+            }
+        }
+
     }
 }

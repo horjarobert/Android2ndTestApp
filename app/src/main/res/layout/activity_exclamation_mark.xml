@@ -219,7 +219,7 @@
         android:id="@+id/btn_exclamation_mark"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/color_green"
+        android:background="@drawable/btn_gray_heavy"
         android:gravity="center"
         android:text="@string/str_exclamation_mark"
         android:textAlignment="center"

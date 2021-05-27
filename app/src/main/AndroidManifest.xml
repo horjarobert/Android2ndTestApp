@@ -4,16 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_verifica"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_verifica_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VerificatorCNP">
 
         <activity android:name=".ExclamationMarkActivity"
             android:screenOrientation="landscape"/>
 
-        <activity android:name=".QuestionMarkActivity"
+        <activity android:name=".InformationSignActivity"
             android:screenOrientation="landscape"/>
 
         <activity
