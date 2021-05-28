@@ -1,14 +1,18 @@
 package com.stufflex.verificatorcnp;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ExclamationMarkActivity extends AppCompatActivity {
 
     // Declarations
-    private Button btn_exclamation_mark;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +23,8 @@ public class ExclamationMarkActivity extends AppCompatActivity {
         hideNavigationBar();
 
         // Initializations
-        btn_exclamation_mark = findViewById(R.id.btn_exclamation_mark);
+
+
 
         
     }

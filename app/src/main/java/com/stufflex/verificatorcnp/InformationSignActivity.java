@@ -1,19 +1,27 @@
 package com.stufflex.verificatorcnp;
 
+import android.content.DialogInterface;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class InformationSignActivity extends AppCompatActivity {
 
     // Declarations
-    private Button btn_information_sign, btn_sexul, btn_anul, btn_luna, btn_ziua, btn_judetul, btn_numar_secvential, btn_cifra_de_control, btn_important;
-
     private ConstraintLayout mainLayout;
 
+    private Button btn_exclamation_mark, btn_sexul, btn_anul, btn_luna, btn_ziua, btn_judetul, btn_numar_secvential, btn_cifra_de_control, btn_important;
+
+    private Animation anim_txt_titlu, anim_btn_sexul, anim_btn_anul, anim_btn_luna, anim_btn_ziua, anim_btn_judetul, anim_btn_numar_secvential, anim_btn_cifra_de_control, anim_btn_important;
+
+    private TextView txt_informatii;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +31,7 @@ public class InformationSignActivity extends AppCompatActivity {
         hideNavigationBar();
 
         // Initializations
-        btn_information_sign = findViewById(R.id.btn_information_sign);
+        btn_exclamation_mark = findViewById(R.id.btn_exclamation_mark);
         btn_sexul = findViewById(R.id.btn_sexul);
         btn_anul = findViewById(R.id.btn_anul);
         btn_luna = findViewById(R.id.btn_luna);
@@ -33,7 +41,50 @@ public class InformationSignActivity extends AppCompatActivity {
         btn_cifra_de_control = findViewById(R.id.btn_cifra_de_control);
         btn_important = findViewById(R.id.btn_important);
 
+        txt_informatii = findViewById(R.id.txt_informatii);
+
         mainLayout = findViewById(R.id.mainLayout);
+
+        // Hide these
+        txt_informatii.setVisibility(View.INVISIBLE);
+        btn_important.setVisibility(View.INVISIBLE);
+
+        // Set animations
+        anim_btn_sexul = AnimationUtils.loadAnimation(this, R.anim.info_up_to_bottom);
+        anim_btn_anul = AnimationUtils.loadAnimation(this, R.anim.info_bottom_to_up);
+        anim_btn_luna = AnimationUtils.loadAnimation(this, R.anim.info_up_to_bottom);
+        anim_btn_ziua = AnimationUtils.loadAnimation(this, R.anim.info_bottom_to_up);
+        anim_btn_judetul = AnimationUtils.loadAnimation(this, R.anim.info_up_to_bottom);
+        anim_btn_numar_secvential = AnimationUtils.loadAnimation(this, R.anim.info_bottom_to_up);
+        anim_btn_cifra_de_control = AnimationUtils.loadAnimation(this, R.anim.info_up_to_bottom);
+        anim_txt_titlu = AnimationUtils.loadAnimation(this, R.anim.info_up_to_bottom);
+        anim_btn_important = AnimationUtils.loadAnimation(this, R.anim.info_bottom_to_up);
+
+        btn_sexul.setAnimation(anim_btn_sexul);
+        btn_anul.setAnimation(anim_btn_anul);
+        btn_luna.setAnimation(anim_btn_luna);
+        btn_ziua.setAnimation(anim_btn_ziua);
+        btn_judetul.setAnimation(anim_btn_judetul);
+        btn_numar_secvential.setAnimation(anim_btn_numar_secvential);
+        btn_cifra_de_control.setAnimation(anim_btn_cifra_de_control);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txt_informatii.setVisibility(View.VISIBLE);
+                txt_informatii.setAnimation(anim_txt_titlu);
+            }
+        }, 500);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn_important.setVisibility(View.VISIBLE);
+            }
+        }, 2000);
+
+        // setOnClickListener
 
         mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,34 +97,66 @@ public class InformationSignActivity extends AppCompatActivity {
         btn_sexul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(InformationSignActivity.this).setTitle("⚠ Sexul, secolul nașterii").setMessage("\t\t1 —️ persoane de sex masculin, născute între 1900 și 1999;\n" +
+
+                AlertDialog.Builder sexul = new AlertDialog.Builder(InformationSignActivity.this);
+                sexul.setTitle("⚠ Sexul, secolul nașterii");
+                sexul.setMessage("\t\t1 —️ persoane de sex masculin, născute între 1900 și 1999;\n" +
                         "\n\t\t2 —️ persoane de sex feminin, născute între 1900 și 1999;\n" + "\n\t\t3 —️ persoane de sex masculin, născute între 1800 și 1899;\n" +
                         "\n\t\t4 —️ persoane de sex feminin, născute între 1800 și 1899;\n" + "\n\t\t5 —️ persoane de sex masculin, născute între 2000 și 2999;\n" +
                         "\n\t\t6 —️ persoane de sex feminin, născute între 2000 și 2999;\n" + "\n\t\t7 —️ persoane de sex masculin, rezidente;\n" +
-                        "\n\t\t8 —️ persoane de sex feminin, rezidente.\n").setPositiveButton(android.R.string.ok, null).setCancelable(false).show();
+                        "\n\t\t8 —️ persoane de sex feminin, rezidente.\n");
+                sexul.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideNavigationBar();
+                    }
+                }).setCancelable(false).show();
 
                 // Navbar-fullscreen
                 hideNavigationBar();
+
             }
         });
 
         btn_anul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(InformationSignActivity.this).setTitle("⚠ Anul nașterii").setMessage("\t\tUltimele două cifre din anul nașterii.\n" +
-                        "\n\t\tExemplu: o persoană născută în 1999, va avea numărul '99' trecut în CNP.").setPositiveButton(android.R.string.ok, null).setCancelable(false).show();
+
+                AlertDialog.Builder anul = new AlertDialog.Builder(InformationSignActivity.this);
+                anul.setTitle("⚠ Anul nașterii");
+                anul.setMessage("\t\tUltimele două cifre din anul nașterii.\n" +
+                        "\n\t\tExemplu: o persoană născută în 1999, va avea numărul '99' trecut în CNP.");
+                anul.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideNavigationBar();
+                    }
+                }).setCancelable(false).show();
 
                 // Navbar-fullscreen
                 hideNavigationBar();
+
             }
         });
 
         btn_luna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(InformationSignActivity.this).setTitle("⚠ Luna nașterii").setMessage("\t\tSe acceptă numere de la 1 la 12.\n" +
+
+                AlertDialog.Builder luna = new AlertDialog.Builder(InformationSignActivity.this);
+                luna.setTitle("⚠ Luna nașterii");
+                luna.setMessage("\t\tSe acceptă numere de la 1 la 12.\n" +
                         "\n\t\tPentru lunile de la 1 la 9 se adaugă înainte cifra '0'.\n" +
-                        "\n\t\tExemplu: o persoană născută în luna Ianuarie, va avea numărul '01' trecut în CNP.").setPositiveButton(android.R.string.ok, null).setCancelable(false).show();
+                        "\n\t\tExemplu: o persoană născută în luna Ianuarie, va avea numărul '01' trecut în CNP.");
+                luna.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                hideNavigationBar();
+                            }
+                        }).setCancelable(false).show();
 
                 // Navbar-fullscreen
                 hideNavigationBar();
@@ -83,9 +166,19 @@ public class InformationSignActivity extends AppCompatActivity {
         btn_ziua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(InformationSignActivity.this).setTitle("⚠ Ziua nașterii").setMessage("\t\tSe acceptă numere de la 1 la 31.\n" +
+
+                AlertDialog.Builder ziua = new AlertDialog.Builder(InformationSignActivity.this);
+                ziua.setTitle("⚠ Ziua nașterii");
+                ziua.setMessage("\t\tSe acceptă numere de la 1 la 31.\n" +
                         "\n\t\tPentru zilele de la 1 la 9 se adaugă înainte cifra '0'.\n" +
-                        "\n\t\tExemplu: o persoană născută în ziua a 9-a, va avea numărul '09' trecut în CNP.").setPositiveButton(android.R.string.ok, null).setCancelable(false).show();
+                        "\n\t\tExemplu: o persoană născută în ziua a 9-a, va avea numărul '09' trecut în CNP.");
+                ziua.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideNavigationBar();
+                    }
+                }).setCancelable(false).show();
 
                 // Navbar-fullscreen
                 hideNavigationBar();
@@ -95,9 +188,13 @@ public class InformationSignActivity extends AppCompatActivity {
         btn_judetul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(InformationSignActivity.this).setTitle("⚠ Județul nașterii").setMessage("\t\tCodul județului (sau sectorului) în care s-a născut persoana respectivă sau în care avea domiciliul (reședința) la momentul în care i-a fost făcut CNP-ul.\n" +
+
+                AlertDialog.Builder judetul = new AlertDialog.Builder(InformationSignActivity.this);
+
+                judetul.setTitle("⚠ Județul nașterii");
+                judetul.setMessage("\t\tCodul județului (sau sectorului) în care s-a născut persoana respectivă sau în care avea domiciliul (reședința) la momentul în care i-a fost făcut CNP-ul.\n" +
                         "\n\t\tCoduri:\n" +
-                        "\n\t\t01 —️ Alba\n" +
+                        "\n\t\t01 —️Alba\n" +
                         "\n\t\t02 —️ Arad\n" +
                         "\n\t\t03 —️ Argeș\n" +
                         "\n\t\t04 —️ Bacău\n" +
@@ -146,7 +243,14 @@ public class InformationSignActivity extends AppCompatActivity {
                         "\n\t\t51 —️ Călărași\n" +
                         "\n\t\t52 —️ Giurgiu\n" +
 
-                        "\n\n\t\tNumerele de la 47 la 50, inclusiv, sunt nule...").setPositiveButton(android.R.string.ok, null).setCancelable(false).show();
+                        "\n\n\t\tNumerele de la 47 la 50, inclusiv, sunt nule...");
+                judetul.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideNavigationBar();
+                    }
+                }).setCancelable(false).show();
 
                 // Navbar-fullscreen
                 hideNavigationBar();
@@ -156,8 +260,18 @@ public class InformationSignActivity extends AppCompatActivity {
         btn_numar_secvential.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(InformationSignActivity.this).setTitle("⚠ Număr secvențial").setMessage("\t\tUn număr secvențial cuprins între 001 și 999.\n" +
-                        "\n\t\tPrin acest număr, unic, se diferențiază persoanele de același sex, născute la aceeași dată și în același loc.\n").setPositiveButton(android.R.string.ok, null).setCancelable(false).show();
+
+                AlertDialog.Builder numar_secvential = new AlertDialog.Builder(InformationSignActivity.this);
+                numar_secvential.setTitle("⚠ Număr secvențial");
+                numar_secvential.setMessage("\t\tUn număr secvențial cuprins între 001 și 999.\n" +
+                        "\n\t\tPrin acest număr, unic, se diferențiază persoanele de același sex, născute la aceeași dată și în același loc.\n");
+                numar_secvential.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideNavigationBar();
+                    }
+                }).setCancelable(false).show();
 
                 // Navbar-fullscreen
                 hideNavigationBar();
@@ -167,9 +281,20 @@ public class InformationSignActivity extends AppCompatActivity {
         btn_cifra_de_control.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(InformationSignActivity.this).setTitle("⚠ Cifra de control").setMessage("\t\tNumăr de securitate.\n" +
+
+                AlertDialog.Builder cifra_de_control = new AlertDialog.Builder(InformationSignActivity.this);
+
+                cifra_de_control.setTitle("⚠ Cifra de control");
+                cifra_de_control.setMessage("\t\tNumăr de securitate.\n" +
                         "\n\t\tSe calculează pe baza primelor 12 cifre, care se înmulțesc cu numărul '279146358279', fiecare cifră cu corespondentul din CNP..., apoi se adună rezultate lor, iar în final se împarte suma la 11 și restul va fi cifra de control.\n" +
-                        "\n\t\tDacă restul este '10', cifra de control va fi '1'.").setPositiveButton(android.R.string.ok, null).setCancelable(false).show();
+                        "\n\t\tDacă restul este '10', cifra de control va fi '1'.");
+                cifra_de_control.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideNavigationBar();
+                    }
+                }).setCancelable(false).show();
 
                 // Navbar-fullscreen
                 hideNavigationBar();

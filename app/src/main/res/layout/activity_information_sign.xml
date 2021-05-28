@@ -219,6 +219,8 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
+        android:background="@drawable/btn_title"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
