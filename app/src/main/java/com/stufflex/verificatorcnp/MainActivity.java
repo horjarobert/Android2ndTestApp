@@ -7,21 +7,26 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.TooltipCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.TransitionManager;
 import android.util.Pair;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -144,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mainLayout.requestFocus();
+
         // Reîmprospătare
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
                 GoToTheNewLayout();
             }
         });
+
     }
 
     // Hide the navigation bar and make full screen all app
@@ -478,8 +486,11 @@ public class MainActivity extends AppCompatActivity {
                         txt_arrow_horizontal_anul.setText("18" + edit_text_anul.getText().toString());
                     } else if (int_edit_text_sexul == 5 || int_edit_text_sexul == 6) {
                         txt_arrow_horizontal_anul.setText("20" + edit_text_anul.getText().toString());
-                    }else if (int_edit_text_sexul == 7 || int_edit_text_sexul == 8) {
+                    }else if (int_edit_text_sexul == 7) {
                         txt_arrow_horizontal_anul.setText("Rezident");
+                    } else if (int_edit_text_sexul == 8) {
+                        txt_arrow_horizontal_anul.setText("Rezidentă");
+
                     }
                 }
 
@@ -1259,6 +1270,120 @@ public class MainActivity extends AppCompatActivity {
                 txt_arrow_horizontal_judetul.setVisibility(View.INVISIBLE);
             }
         }
+
+    }
+
+    public void OnTxtArrowHorizontalClick_Sexul(View view) {
+
+        //Set Tooltip
+        TooltipCompat.setTooltipText(txt_arrow_horizontal_sexul,"Sexul");
+
+        txt_arrow_horizontal_sexul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_arrow_horizontal_sexul.performLongClick();
+
+            }
+        });
+
+    }
+
+    public void OnTxtArrowHorizontalClick_Anul(View view) {
+
+        //Set Tooltip
+        txt_arrow_horizontal_anul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_arrow_horizontal_anul.performLongClick();
+
+                if (edit_text_sexul.length() > 0) {
+                    int_edit_text_sexul = Integer.parseInt(edit_text_sexul.getText().toString());
+                    if (int_edit_text_sexul == 7) {
+                        TooltipCompat.setTooltipText(txt_arrow_horizontal_anul,"Cetățean al altei țări");
+                        txt_arrow_horizontal_anul.performLongClick();
+
+                    } else if (int_edit_text_sexul == 8) {
+                        TooltipCompat.setTooltipText(txt_arrow_horizontal_anul,"Cetățeană a altei țări");
+                        txt_arrow_horizontal_anul.performLongClick();
+
+                    } else {
+                        TooltipCompat.setTooltipText(txt_arrow_horizontal_anul,"Anul nașterii");
+                        txt_arrow_horizontal_anul.performLongClick();
+
+                    }
+                }
+            }
+        });
+
+    }
+
+    public void OnTxtArrowHorizontalClick_Luna(View view) {
+
+        //Set Tooltip
+        TooltipCompat.setTooltipText(txt_arrow_horizontal_luna,"Luna nașterii");
+
+        txt_arrow_horizontal_luna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_arrow_horizontal_luna.performLongClick();
+            }
+        });
+
+    }
+
+    public void OnTxtArrowHorizontalClick_Ziua(View view) {
+
+        //Set Tooltip
+        TooltipCompat.setTooltipText(txt_arrow_horizontal_ziua,"Ziua nașterii");
+
+        txt_arrow_horizontal_ziua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_arrow_horizontal_ziua.performLongClick();
+            }
+        });
+
+    }
+
+    public void OnTxtArrowHorizontalClick_Judetul(View view) {
+
+        //Set Tooltip
+        TooltipCompat.setTooltipText(txt_arrow_horizontal_judetul,"Județul (sectorul) nașterii");
+
+        txt_arrow_horizontal_judetul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_arrow_horizontal_judetul.performLongClick();
+            }
+        });
+
+    }
+
+    public void OnTxtArrowHorizontalClick_Numar_Secvential(View view) {
+
+        //Set Tooltip
+        TooltipCompat.setTooltipText(txt_arrow_horizontal_numar_secvential,"Numărul secvențial");
+
+        txt_arrow_horizontal_numar_secvential.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_arrow_horizontal_numar_secvential.performLongClick();
+            }
+        });
+
+    }
+
+    public void OnTxtArrowHorizontalClick_Cifra_De_Control(View view) {
+
+        //Set Tooltip
+        TooltipCompat.setTooltipText(txt_arrow_horizontal_cifra_de_control,"Cifra de control");
+
+        txt_arrow_horizontal_cifra_de_control.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_arrow_horizontal_cifra_de_control.performLongClick();
+            }
+        });
 
     }
 }

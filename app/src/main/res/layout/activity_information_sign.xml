@@ -214,17 +214,17 @@
         android:id="@+id/txt_informatii"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_title"
         android:gravity="center"
+        android:padding="10dp"
         android:text="@string/str_informatii"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:background="@drawable/btn_title"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_1"
+        app:layout_constraintBottom_toTopOf="@+id/btn_judetul"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_ht_1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- END texts -->
 
@@ -253,10 +253,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btn_verificare"
         android:text="@string/str_hint_sexul"
-        android:textSize="20sp"
         android:textColor="@color/black"
+        android:textSize="20sp"
         android:tooltipText="@string/str_tooltip_sexul"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_6"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_3"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_1"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_2" />
@@ -270,7 +270,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:tooltipText="@string/str_tooltip_anul"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_8"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_4"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_2"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_4" />
@@ -281,10 +281,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btn_verificare"
         android:text="@string/str_hint_luna"
-        android:textSize="20sp"
         android:textColor="@color/black"
+        android:textSize="20sp"
         android:tooltipText="@string/str_tooltip_luna"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_6"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_5"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_3"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_2" />
@@ -298,7 +298,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:tooltipText="@string/str_tooltip_ziua"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_8"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_6"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_4"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_4" />
@@ -312,7 +312,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:tooltipText="@string/str_tooltip_judet"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_6"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_7"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_5"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_2" />
@@ -326,7 +326,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:tooltipText="@string/str_tooltip_numar_secvential"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_8"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_8"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_6"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_4" />
@@ -340,7 +340,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:tooltipText="@string/str_tooltip_cifra_de_control"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_6"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_9"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_7"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_2" />
@@ -351,10 +351,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btn_verificare"
         android:text="@string/str_important_sign"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textColor="@color/color_red"
+        android:textStyle="bold"
+        android:textSize="30sp"
         android:tooltipText="@string/str_tooltip_important"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_8"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_7" />

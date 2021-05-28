@@ -33,7 +33,7 @@
     <string name="str_question_mark">"\?"</string>
     <string name="str_exclamation_mark">!</string>
     <string name="str_information_sign">!</string>
-    <string name="str_important_sign">❗</string>
+    <string name="str_important_sign">!</string>
 
     <string name="str_verifica">Verifică</string>
     <string name="str_verifica_semn">✔</string>

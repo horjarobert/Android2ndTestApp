@@ -221,10 +221,10 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_1"
+        app:layout_constraintBottom_toTopOf="@+id/btn_refresh"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_95"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_15"
-        app:layout_constraintTop_toTopOf="@+id/guideline_ht_1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edit_text_sexul"
@@ -402,7 +402,7 @@
         android:text="@string/str_verifica_semn"
         android:textSize="30sp"
         android:tooltipText="@string/str_verifica"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_9"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_2"
         app:layout_constraintTop_toTopOf="@+id/guideline_ht_7" />
@@ -439,7 +439,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_ht_9" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_verificare" />
 
 
     <!-- END txt_reimprospatare -->
@@ -526,7 +526,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:visibility="invisible"
-        android:tooltipText="@string/str_arrow_horizontal_sexul"
+        android:onClick="OnTxtArrowHorizontalClick_Sexul"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_35"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_15"
@@ -540,7 +540,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:visibility="invisible"
-        android:tooltipText="@string/str_arrow_horizontal_anul"
+        android:onClick="OnTxtArrowHorizontalClick_Anul"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_8"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_45"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_25"
@@ -554,7 +554,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:visibility="invisible"
-        android:tooltipText="@string/str_arrow_horizontal_luna"
+        android:onClick="OnTxtArrowHorizontalClick_Luna"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_7"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_55"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_35"
@@ -568,7 +568,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:visibility="invisible"
-        android:tooltipText="@string/str_arrow_horizontal_ziua"
+        android:onClick="OnTxtArrowHorizontalClick_Ziua"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_6"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_6"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_5"
@@ -582,7 +582,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:visibility="invisible"
-        android:tooltipText="@string/str_arrow_horizontal_judetul"
+        android:onClick="OnTxtArrowHorizontalClick_Judetul"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_7"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_75"
         app:layout_constraintStart_toStartOf="@+id/guideline_vt_55"
@@ -595,7 +595,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:tooltipText="@string/str_arrow_horizontal_numar_secvential"
+        android:onClick="OnTxtArrowHorizontalClick_Numar_Secvential"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_8"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_85"
@@ -609,7 +609,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:tooltipText="@string/str_arrow_horizontal_cifra_de_control"
+        android:onClick="OnTxtArrowHorizontalClick_Cifra_De_Control"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_95"
