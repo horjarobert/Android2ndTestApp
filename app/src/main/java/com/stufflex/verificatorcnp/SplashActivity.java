@@ -90,6 +90,8 @@ public class SplashActivity extends AppCompatActivity {
     private Animation anim_letter_o_down;
     private Animation anim_letter_r_2_up;
 
+    private Animation anim_by_stufflex;
+
     private AnimatorSet setDownAndUp_C;
     private AnimatorSet setDownAndUp_N;
     private AnimatorSet setDownAndUp_P;
@@ -456,6 +458,8 @@ public class SplashActivity extends AppCompatActivity {
         anim_letter_t_up = AnimationUtils.loadAnimation(this, R.anim.bottom_to_up);
         anim_letter_o_down = AnimationUtils.loadAnimation(this, R.anim.up_to_bottom);
         anim_letter_r_2_up = AnimationUtils.loadAnimation(this, R.anim.bottom_to_up);
+
+        anim_by_stufflex = AnimationUtils.loadAnimation(this, R.anim.anim_by_stufflex);
 
         // Special guest | Animation for txt_letter_cnp_C
         scaleDown_C = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
@@ -3218,8 +3222,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 txt_by_Stufflex.setVisibility(View.VISIBLE);
+                txt_by_Stufflex.setAnimation(anim_by_stufflex);
             }
-        }, 5000);
+        }, 4500);
 
         // Splash screen time-limit
         handler_special = new Handler();
@@ -3231,7 +3236,7 @@ public class SplashActivity extends AppCompatActivity {
                 SplashActivity.this.finish();
             }
         };
-        handler_special.postDelayed(runnable_special, 5700);
+        handler_special.postDelayed(runnable_special, 6500);
 
     }
 

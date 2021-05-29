@@ -423,12 +423,12 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:visibility="invisible"
         android:translationZ="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vt_5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vt_5"
-        app:layout_constraintTop_toTopOf="@+id/guideline_ht_5" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vt_95"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vt_65"
+        app:layout_constraintTop_toTopOf="@+id/guideline_ht_8" />
     <!-- END by Stufflex -->
 
     <!-- BEGIN freestyle box day -->
