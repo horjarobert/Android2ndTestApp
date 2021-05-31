@@ -7,12 +7,19 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ExclamationMarkActivity extends AppCompatActivity {
 
     // Declarations
+    private TextView txt_de_retinut, txt_explicatii;
 
+    private Button btn_exclamation_mark;
+
+    private ScrollView scrollLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +30,12 @@ public class ExclamationMarkActivity extends AppCompatActivity {
         hideNavigationBar();
 
         // Initializations
+        txt_de_retinut = findViewById(R.id.txt_de_retinut);
+        txt_explicatii = findViewById(R.id.txt_explicatii);
 
+        btn_exclamation_mark = findViewById(R.id.btn_exclamation_mark);
+
+        scrollLayout = findViewById(R.id.scrollLayout);
 
 
         

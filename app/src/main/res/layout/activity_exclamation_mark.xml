@@ -210,7 +210,21 @@
     <!-- END helpers -->
 
     <!-- BEGIN texts -->
-
+    <TextView
+        android:id="@+id/txt_de_retinut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_title"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/str_de_retinut"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vt_9"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vt_2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- END texts -->
 
@@ -234,7 +248,41 @@
 
     <!-- END buttons -->
 
+    <!-- BEGIN explanations -->
 
+
+    <ScrollView
+        android:id="@+id/scrollLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbarSize="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vt_9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vt_2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_ht_3"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/txt_explicatii"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:padding="4dp"
+            android:text="\t\t1. Scopul aplicației este strict acela de a verifica dacă un număr CNP este valid din punct de vedere legal și nu de a genera un nou CNP sau de a stoca datele introduse.\n\n\t\t2. Aplicația de față nu încalcă legea nr. 677 din 21 Noiembrie, 2001, cu privire la prelucrarea datelor cu caracter personal și libera circulație a acestora.\n\n\t\t3. Conform regulamentului GDPR introdus în România, începând cu 25 Mai, 2018, vă asigur că datele introduse nu încalcă regulamentul, datele nu sunt stocate, persoana fizică este protejată într-un mod responsabil.\n\n\n\n\t\tMulțumesc!"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
+
+    </ScrollView>
+
+
+    <!-- END explanations -->
 
 
 </android.support.constraint.ConstraintLayout>

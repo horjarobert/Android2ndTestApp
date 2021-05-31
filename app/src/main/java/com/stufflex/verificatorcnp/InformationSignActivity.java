@@ -301,6 +301,29 @@ public class InformationSignActivity extends AppCompatActivity {
             }
         });
 
+        btn_important.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder important = new AlertDialog.Builder(InformationSignActivity.this);
+
+                important.setTitle("⚠ Informații");
+                important.setMessage("\t\tInformațiile prezentate în această aplicație au fost publicate în Monitorul Oficial nr. 851 din 17 Octombrie, 2006.\n" +
+                        "\n\t\tCNP-ul a fost introdus prin decretul nr. 59 din 2 Martie, 1978.\n" +
+                        "\n\t\tCNP = Cod Numeric Personal");
+                important.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        hideNavigationBar();
+                    }
+                }).setCancelable(false).show();
+
+                // Navbar-fullscreen
+                hideNavigationBar();
+            }
+        });
+
     }
 
     // Hide the navigation bar and make full screen all app
