@@ -276,6 +276,9 @@ public class MainActivity extends AppCompatActivity {
                 if (edit_text_sexul.length() == 1) {
                     edit_text_anul.requestFocus();
                 }
+
+                // Navbar-fullscreen
+                hideNavigationBar();
             }
 
             @Override
@@ -295,7 +298,12 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (edit_text_anul.length() == 2) {
                     edit_text_luna.requestFocus();
+                } else if (edit_text_anul.length() == 0) {
+                    edit_text_sexul.requestFocus();
                 }
+
+                // Navbar-fullscreen
+                hideNavigationBar();
             }
 
             @Override
@@ -315,7 +323,12 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (edit_text_luna.length() == 2) {
                     edit_text_ziua.requestFocus();
+                } else if (edit_text_luna.length() == 0) {
+                    edit_text_anul.requestFocus();
                 }
+
+                // Navbar-fullscreen
+                hideNavigationBar();
             }
 
             @Override
@@ -335,7 +348,12 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (edit_text_ziua.length() == 2) {
                     edit_text_judetul.requestFocus();
+                } else if (edit_text_ziua.length() == 0) {
+                    edit_text_luna.requestFocus();
                 }
+
+                // Navbar-fullscreen
+                hideNavigationBar();
             }
 
             @Override
@@ -355,7 +373,12 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (edit_text_judetul.length() == 2) {
                     edit_text_numar_secvential.requestFocus();
+                } else if (edit_text_judetul.length() == 0) {
+                    edit_text_ziua.requestFocus();
                 }
+
+                // Navbar-fullscreen
+                hideNavigationBar();
             }
 
             @Override
@@ -375,7 +398,12 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (edit_text_numar_secvential.length() == 3) {
                     edit_text_cifra_de_control.requestFocus();
+                } else if (edit_text_numar_secvential.length() == 0) {
+                    edit_text_judetul.requestFocus();
                 }
+
+                // Navbar-fullscreen
+                hideNavigationBar();
             }
 
             @Override
@@ -393,6 +421,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (edit_text_cifra_de_control.length() == 0) {
+                    edit_text_numar_secvential.requestFocus();
+                }
                 // Navbar-fullscreen
                 hideNavigationBar();
             }
@@ -972,72 +1004,6 @@ public class MainActivity extends AppCompatActivity {
         setDownAndUp_Sexul = new AnimatorSet();
         setDownAndUp_Sexul.playSequentially(scaleDown_Sexul, scaleUp_Sexul);
 
-        scaleDown_Sexul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        scaleUp_Sexul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        setDownAndUp_Sexul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_sexul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
         // Special guest | Animation for edit_text_sexul
         scaleDown_Anul = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
         scaleDown_Anul.setTarget(edit_text_anul);
@@ -1046,72 +1012,6 @@ public class MainActivity extends AppCompatActivity {
 
         setDownAndUp_Anul = new AnimatorSet();
         setDownAndUp_Anul.playSequentially(scaleDown_Anul, scaleUp_Anul);
-
-        scaleDown_Anul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        scaleUp_Anul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        setDownAndUp_Anul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_anul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
 
         // Special guest | Animation for edit_text_luna
         scaleDown_Luna = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
@@ -1122,72 +1022,6 @@ public class MainActivity extends AppCompatActivity {
         setDownAndUp_Luna = new AnimatorSet();
         setDownAndUp_Luna.playSequentially(scaleDown_Luna, scaleUp_Luna);
 
-        scaleDown_Luna.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        scaleUp_Luna.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        setDownAndUp_Luna.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_luna.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
         // Special guest | Animation for edit_text_ziua
         scaleDown_Ziua = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
         scaleDown_Ziua.setTarget(edit_text_ziua);
@@ -1196,72 +1030,6 @@ public class MainActivity extends AppCompatActivity {
 
         setDownAndUp_Ziua = new AnimatorSet();
         setDownAndUp_Ziua.playSequentially(scaleDown_Ziua, scaleUp_Ziua);
-
-        scaleDown_Ziua.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        scaleUp_Ziua.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        setDownAndUp_Ziua.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_ziua.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
 
         // Special guest | Animation for edit_text_judetul
         scaleDown_Judetul = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
@@ -1272,72 +1040,6 @@ public class MainActivity extends AppCompatActivity {
         setDownAndUp_Judetul = new AnimatorSet();
         setDownAndUp_Judetul.playSequentially(scaleDown_Judetul, scaleUp_Judetul);
 
-        scaleDown_Judetul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        scaleUp_Judetul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        setDownAndUp_Judetul.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_judetul.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
         // Special guest | Animation for edit_text_numar_secvential
         scaleDown_NumarSecvential = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
         scaleDown_NumarSecvential.setTarget(edit_text_numar_secvential);
@@ -1347,72 +1049,6 @@ public class MainActivity extends AppCompatActivity {
         setDownAndUp_NumarSecvential = new AnimatorSet();
         setDownAndUp_NumarSecvential.playSequentially(scaleDown_NumarSecvential, scaleUp_NumarSecvential);
 
-        scaleDown_NumarSecvential.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        scaleUp_NumarSecvential.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        setDownAndUp_NumarSecvential.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_numar_secvential.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
         // Special guest | Animation for edit_text_cifra_de_control
         scaleDown_CifraDeControl = AnimatorInflater.loadAnimator(this, R.animator.scale_down);
         scaleDown_CifraDeControl.setTarget(edit_text_cifra_de_control);
@@ -1421,72 +1057,6 @@ public class MainActivity extends AppCompatActivity {
 
         setDownAndUp_CifraDeControl = new AnimatorSet();
         setDownAndUp_CifraDeControl.playSequentially(scaleDown_CifraDeControl, scaleUp_CifraDeControl);
-
-        scaleDown_CifraDeControl.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        scaleUp_CifraDeControl.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        setDownAndUp_CifraDeControl.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                edit_text_cifra_de_control.setLayerType(View.LAYER_TYPE_NONE, null);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
 
         // Animations order
         new Handler().postDelayed(new Runnable() {
