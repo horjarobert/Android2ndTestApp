@@ -60,13 +60,6 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintSet constraintSetActivityNEW = new ConstraintSet();
 
     private boolean verificareIsClicked = false;
-    private boolean checkIfTrue_1 = false;
-    private boolean checkIfTrue_2 = false;
-    private boolean checkIfTrue_3 = false;
-    private boolean checkIfTrue_4 = false;
-    private boolean checkIfTrue_5 = false;
-    private boolean checkIfTrue_6 = false;
-    private boolean checkIfTrue_7 = false;
 
     private Handler handler1, handler2, handler3, handler4, handler5, handler6, handler7;
     private Runnable runnable1, runnable2, runnable3, runnable4, runnable5, runnable6, runnable7;
