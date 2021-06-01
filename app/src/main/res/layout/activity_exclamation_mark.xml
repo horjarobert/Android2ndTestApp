@@ -270,7 +270,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="serif"
             android:padding="10dp"
-            android:text="\t\t1. Scopul aplicației este strict acela de a verifica dacă un număr CNP este valid din punct de vedere legal și nu de a genera un nou CNP sau de a stoca datele introduse.\n\n\t\t2. Aplicația de față nu încalcă legea nr. 677 din 21 Noiembrie, 2001, cu privire la prelucrarea datelor cu caracter personal și libera circulație a acestora.\n\n\t\t3. Conform regulamentului GDPR introdus în România, începând cu 25 Mai, 2018, vă asigur că datele introduse nu încalcă regulamentul, datele nu sunt stocate, persoana fizică este protejată într-un mod responsabil.\n\n\n\n\t\tMulțumesc!"
+            android:text="\t\t1. Scopul aplicației este strict acela de a verifica dacă un număr CNP este valid din punct de vedere legal și nu de a genera un nou CNP sau de a stoca datele introduse.\n\n\t\t2. Aplicația de față nu încalcă legea nr. 677 din 21 Noiembrie, 2001, cu privire la prelucrarea datelor cu caracter personal și libera circulație a acestora.\n\n\t\t3. Prin utilizarea aplicației se respectă legislația GDPR.\n\n\n\n\t\tMulțumesc!"
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="15sp"

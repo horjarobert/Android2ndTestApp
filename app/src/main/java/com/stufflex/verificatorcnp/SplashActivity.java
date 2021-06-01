@@ -18,23 +18,9 @@ import android.widget.TextView;
 public class SplashActivity extends AppCompatActivity {
 
     // Declarations
-    private TextView txt_letter_V;
-    private TextView txt_letter_e;
-    private TextView txt_letter_r_1;
-    private TextView txt_letter_i_1;
-    private TextView txt_letter_f;
-    private TextView txt_letter_i_2;
-    private TextView txt_letter_c;
-    private TextView txt_letter_a;
-    private TextView txt_letter_t;
-    private TextView txt_letter_o;
-    private TextView txt_letter_r_2;
+    private TextView txt_letter_V, txt_letter_e, txt_letter_r_1, txt_letter_i_1, txt_letter_f, txt_letter_i_2, txt_letter_c, txt_letter_a, txt_letter_t, txt_letter_o, txt_letter_r_2;
 
-    private TextView txt_letter_cnp_C;
-    private TextView txt_letter_cnp_N;
-    private TextView txt_letter_cnp_P;
-
-    private TextView txt_by_Stufflex;
+    private TextView txt_letter_cnp_C, txt_letter_cnp_N, txt_letter_cnp_P, txt_by_Stufflex;
 
     private TextView txt_a_1, txt_a_2, txt_a_3, txt_a_4, txt_a_5, txt_a_6, txt_a_7, txt_a_8, txt_a_9, txt_a_10;
     private TextView txt_b_1, txt_b_2, txt_b_3, txt_b_4, txt_b_5, txt_b_6, txt_b_7, txt_b_8, txt_b_9, txt_b_10;
@@ -57,8 +43,7 @@ public class SplashActivity extends AppCompatActivity {
     private TextView txt_s_1, txt_s_2, txt_s_3, txt_s_4, txt_s_5, txt_s_6, txt_s_7, txt_s_8, txt_s_9, txt_s_10;
     private TextView txt_t_1, txt_t_2, txt_t_3, txt_t_4, txt_t_5, txt_t_6, txt_t_7, txt_t_8, txt_t_9, txt_t_10;
 
-    private ConstraintLayout splashLayout;
-    private ConstraintLayout clickToEndLayout;
+    private ConstraintLayout splashLayout, clickToEndLayout;
 
     private Handler handler_letter_V, handler_letter_e, handler_letter_r_1, handler_letter_i_1, handler_letter_f, handler_letter_i_2,
                     handler_letter_c, handler_letter_a, handler_letter_t, handler_letter_o, handler_letter_r_2, handler_special;
@@ -66,35 +51,12 @@ public class SplashActivity extends AppCompatActivity {
     private Runnable runnable_letter_V, runnable_letter_e, runnable_letter_r_1, runnable_letter_i_1, runnable_letter_f, runnable_letter_i_2,
                      runnable_letter_c, runnable_letter_a, runnable_letter_t, runnable_letter_o, runnable_letter_r_2, runnable_special;
 
-    private Animation anim_letter_V;
-    private Animation anim_letter_e;
-    private Animation anim_letter_r_1;
-    private Animation anim_letter_i_1;
-    private Animation anim_letter_f;
-    private Animation anim_letter_i_2;
-    private Animation anim_letter_c;
-    private Animation anim_letter_a;
-    private Animation anim_letter_t;
-    private Animation anim_letter_o;
-    private Animation anim_letter_r_2;
+    private Animation anim_letter_V, anim_letter_e, anim_letter_r_1, anim_letter_i_1, anim_letter_f, anim_letter_i_2, anim_letter_c, anim_letter_a, anim_letter_t, anim_letter_o, anim_letter_r_2;
 
-    private Animation anim_letter_V_up;
-    private Animation anim_letter_e_down;
-    private Animation anim_letter_r_1_up;
-    private Animation anim_letter_i_1_down;
-    private Animation anim_letter_f_up;
-    private Animation anim_letter_i_2_down;
-    private Animation anim_letter_c_up;
-    private Animation anim_letter_a_down;
-    private Animation anim_letter_t_up;
-    private Animation anim_letter_o_down;
-    private Animation anim_letter_r_2_up;
+    private Animation anim_letter_V_up, anim_letter_e_down, anim_letter_r_1_up, anim_letter_i_1_down, anim_letter_f_up, anim_letter_i_2_down, anim_letter_c_up, anim_letter_a_down,
+            anim_letter_t_up, anim_letter_o_down, anim_letter_r_2_up, anim_by_stufflex;
 
-    private Animation anim_by_stufflex;
-
-    private AnimatorSet setDownAndUp_C;
-    private AnimatorSet setDownAndUp_N;
-    private AnimatorSet setDownAndUp_P;
+    private AnimatorSet setDownAndUp_C, setDownAndUp_N, setDownAndUp_P;
 
     private AnimatorSet setDownAndUp_txt_b_2, setDownAndUp_txt_b_3, setDownAndUp_txt_b_4, setDownAndUp_txt_b_5, setDownAndUp_txt_b_6, setDownAndUp_txt_b_7,setDownAndUp_txt_b_8, setDownAndUp_txt_b_9;
     private AnimatorSet setDownAndUp_txt_c_2, setDownAndUp_txt_c_3, setDownAndUp_txt_c_4, setDownAndUp_txt_c_5, setDownAndUp_txt_c_6, setDownAndUp_txt_c_7,setDownAndUp_txt_c_8, setDownAndUp_txt_c_9;
@@ -115,9 +77,7 @@ public class SplashActivity extends AppCompatActivity {
     private AnimatorSet setDownAndUp_txt_r_2, setDownAndUp_txt_r_3, setDownAndUp_txt_r_4, setDownAndUp_txt_r_5, setDownAndUp_txt_r_6, setDownAndUp_txt_r_7,setDownAndUp_txt_r_8, setDownAndUp_txt_r_9;
     private AnimatorSet setDownAndUp_txt_s_2, setDownAndUp_txt_s_3, setDownAndUp_txt_s_4, setDownAndUp_txt_s_5, setDownAndUp_txt_s_6, setDownAndUp_txt_s_7,setDownAndUp_txt_s_8, setDownAndUp_txt_s_9;
 
-    private Animator scaleDown_C;
-    private Animator scaleDown_N;
-    private Animator scaleDown_P;
+    private Animator scaleDown_C, scaleDown_N, scaleDown_P;
 
     private Animator scaleDown_txt_b_2, scaleDown_txt_b_3, scaleDown_txt_b_4, scaleDown_txt_b_5, scaleDown_txt_b_6, scaleDown_txt_b_7, scaleDown_txt_b_8, scaleDown_txt_b_9;
     private Animator scaleDown_txt_c_2, scaleDown_txt_c_3, scaleDown_txt_c_4, scaleDown_txt_c_5, scaleDown_txt_c_6, scaleDown_txt_c_7, scaleDown_txt_c_8, scaleDown_txt_c_9;
@@ -138,9 +98,7 @@ public class SplashActivity extends AppCompatActivity {
     private Animator scaleDown_txt_r_2, scaleDown_txt_r_3, scaleDown_txt_r_4, scaleDown_txt_r_5, scaleDown_txt_r_6, scaleDown_txt_r_7, scaleDown_txt_r_8, scaleDown_txt_r_9;
     private Animator scaleDown_txt_s_2, scaleDown_txt_s_3, scaleDown_txt_s_4, scaleDown_txt_s_5, scaleDown_txt_s_6, scaleDown_txt_s_7, scaleDown_txt_s_8, scaleDown_txt_s_9;
 
-    private Animator scaleUp_C;
-    private Animator scaleUp_N;
-    private Animator scaleUp_P;
+    private Animator scaleUp_C, scaleUp_N, scaleUp_P;
 
     private Animator scaleUp_txt_b_2, scaleUp_txt_b_3, scaleUp_txt_b_4, scaleUp_txt_b_5, scaleUp_txt_b_6, scaleUp_txt_b_7, scaleUp_txt_b_8, scaleUp_txt_b_9;
     private Animator scaleUp_txt_c_2, scaleUp_txt_c_3, scaleUp_txt_c_4, scaleUp_txt_c_5, scaleUp_txt_c_6, scaleUp_txt_c_7, scaleUp_txt_c_8, scaleUp_txt_c_9;
@@ -170,6 +128,9 @@ public class SplashActivity extends AppCompatActivity {
 
         // Navbar-fullscreen
         hideNavigationBar();
+
+        // Disable screenshot option by using FLAG_SECURE
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         // Initializations
         txt_letter_V = findViewById(R.id.txt_letter_V);

@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -29,6 +30,9 @@ public class InformationSignActivity extends AppCompatActivity {
 
         // Navbar-fullscreen
         hideNavigationBar();
+
+        // Disable screenshot option by using FLAG_SECURE
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         // Initializations
         btn_exclamation_mark = findViewById(R.id.btn_exclamation_mark);
