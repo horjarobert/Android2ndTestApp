@@ -309,6 +309,8 @@ public class InformationSignActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                btn_important.animate().rotation(btn_important.getRotation()-90).start();
+
                 AlertDialog.Builder important = new AlertDialog.Builder(InformationSignActivity.this);
 
                 important.setTitle("⚠ Informații");
@@ -320,6 +322,8 @@ public class InformationSignActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         hideNavigationBar();
+
+                        btn_important.animate().rotation(btn_important.getRotation()+90).start();
                     }
                 }).setCancelable(false).show();
 
