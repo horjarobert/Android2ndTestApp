@@ -255,7 +255,7 @@
         android:id="@+id/scrollLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scrollbarSize="2dp"
+        android:scrollbarSize="1dp"
         android:background="@drawable/txt_background"
         app:layout_constraintBottom_toTopOf="@+id/guideline_ht_9"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vt_9"
