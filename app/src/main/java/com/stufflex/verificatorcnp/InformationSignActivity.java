@@ -290,7 +290,7 @@ public class InformationSignActivity extends AppCompatActivity {
 
                 cifra_de_control.setTitle("⚠ Cifra de control");
                 cifra_de_control.setMessage("\t\tNumăr de securitate.\n" +
-                        "\n\t\tSe calculează pe baza primelor 12 cifre, care se înmulțesc cu numărul '279146358279', fiecare cifră cu corespondentul din CNP..., apoi se adună rezultate lor, iar în final se împarte suma la 11 și restul va fi cifra de control.\n" +
+                        "\n\t\tSe calculează pe baza primelor 12 cifre, care se înmulțesc cu numărul '279146358279', fiecare cifră cu corespondentul din CNP, apoi se adună rezultate lor, iar în final se împarte suma la 11 și restul va fi cifra de control.\n" +
                         "\n\t\tDacă restul este '10', cifra de control va fi '1'.");
                 cifra_de_control.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
